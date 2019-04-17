@@ -3,7 +3,6 @@ package mapreduce
 //
 // Please do not modify this file.
 //
-
 import (
 	"fmt"
 	"net"
@@ -40,8 +39,7 @@ func (mr *Master) Register(args *RegisterArgs, _ *struct{}) error {
 	mr.workers = append(mr.workers, args.Worker)
 
 	// tell forwardRegistrations() that there's a new workers[] entry.
-	mr.newCond.Broadcast()
-
+	mr.newCond.Broadcast()//Broadcast唤醒所有等待newCond的线程。调用者在调用本方法时，建议（但并非必须）保持c.L的锁定。
 	return nil
 }
 
@@ -82,7 +80,7 @@ func Sequential(jobName string, files []string, nreduce int,
 // helper function that sends information about all existing
 // and newly registered workers to channel ch. schedule()
 // reads ch to learn about workers.
-func (mr *Master) forwardRegistrations(ch chan string) {
+func (mr *Master) forwardRegistrations(ch chan string) { 	//此函数与Register函数对应
 	i := 0
 	for {
 		mr.Lock()
@@ -97,6 +95,8 @@ func (mr *Master) forwardRegistrations(ch chan string) {
 			mr.newCond.Wait()
 		}
 		mr.Unlock()
+		//Wait自行解锁c.L并阻塞当前线程，在之后线程恢复执行时，Wait方法会在返回前锁定c.L。
+		// 和其他系统不同，Wait除非被Broadcast或者Signal唤醒，不会主动返回。
 	}
 }
 

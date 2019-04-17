@@ -1,0 +1,175 @@
+2019/04/10 19:27:21 rpc.Register: method "CleanupFiles" has 1 input parameters; needs exactly three
+2019/04/10 19:27:21 rpc.Register: method "Lock" has 1 input parameters; needs exactly three
+2019/04/10 19:27:21 rpc.Register: method "Unlock" has 1 input parameters; needs exactly three
+2019/04/10 19:27:21 rpc.Register: method "Wait" has 1 input parameters; needs exactly three
+/var/tmp/824-501/mr27651-master: Starting Map/Reduce task test
+RunWorker /var/tmp/824-501/mr27651-worker0
+Schedule: 20 mapPhase tasks (10 I/Os)
+RunWorker /var/tmp/824-501/mr27651-worker1
+2019/04/10 19:27:21 rpc.Register: method "Lock" has 1 input parameters; needs exactly three
+2019/04/10 19:27:21 rpc.Register: method "Lock" has 1 input parameters; needs exactly three
+2019/04/10 19:27:21 rpc.Register: method "Unlock" has 1 input parameters; needs exactly three
+2019/04/10 19:27:21 rpc.Register: method "Unlock" has 1 input parameters; needs exactly three
+Register: worker /var/tmp/824-501/mr27651-worker1
+Register: worker /var/tmp/824-501/mr27651-worker0
+SIGQUIT: quit
+PC=0x7fff61fd27de m=0 sigcode=0
+
+goroutine 0 [idle]:
+runtime.pthread_cond_wait(0x1984820, 0x19847e0, 0x0)
+	/usr/local/go/src/runtime/sys_darwin.go:302 +0x51
+runtime.semasleep(0xffffffffffffffff, 0x0)
+	/usr/local/go/src/runtime/os_darwin.go:63 +0x85
+runtime.notesleep(0x19845e0)
+	/usr/local/go/src/runtime/lock_sema.go:167 +0xe3
+runtime.stopm()
+	/usr/local/go/src/runtime/proc.go:2016 +0xe3
+runtime.findrunnable(0xc000028500, 0x0)
+	/usr/local/go/src/runtime/proc.go:2487 +0x4dc
+runtime.schedule()
+	/usr/local/go/src/runtime/proc.go:2613 +0x13a
+runtime.park_m(0xc00007a780)
+	/usr/local/go/src/runtime/proc.go:2676 +0xae
+runtime.mcall(0x1093b1b)
+	/usr/local/go/src/runtime/asm_amd64.s:299 +0x5b
+
+goroutine 1 [chan receive, 9 minutes]:
+testing.(*T).Run(0xc000154100, 0x15f125e, 0x11, 0x1606cb0, 0xc0000fbc01)
+	/usr/local/go/src/testing/testing.go:879 +0x692
+testing.runTests.func1(0xc000154100)
+	/usr/local/go/src/testing/testing.go:1119 +0xa9
+testing.tRunner(0xc000154100, 0xc0000fbd88)
+	/usr/local/go/src/testing/testing.go:827 +0x163
+testing.runTests(0xc00014c0a0, 0x197aee0, 0x6, 0x6, 0xc0000fbe30)
+	/usr/local/go/src/testing/testing.go:1117 +0x4ef
+testing.(*M).Run(0xc00015a000, 0x0)
+	/usr/local/go/src/testing/testing.go:1034 +0x2ef
+main.main()
+	_testmain.go:52 +0x222
+
+goroutine 19 [chan receive, 9 minutes]:
+mapreduce.(*Master).Wait(...)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:156
+mapreduce.TestParallelBasic(0xc000154200)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/test_test.go:168 +0x177
+testing.tRunner(0xc000154200, 0x1606cb0)
+	/usr/local/go/src/testing/testing.go:827 +0x163
+created by testing.(*T).Run
+	/usr/local/go/src/testing/testing.go:878 +0x65a
+
+goroutine 22 [IO wait, 9 minutes]:
+internal/poll.runtime_pollWait(0x635ced0, 0x72, 0x1941728)
+	/usr/local/go/src/runtime/netpoll.go:173 +0x66
+internal/poll.(*pollDesc).wait(0xc00015a218, 0x72, 0x0, 0xffffffffffffffff, 0x1673f60)
+	/usr/local/go/src/internal/poll/fd_poll_runtime.go:85 +0xe4
+internal/poll.(*pollDesc).waitRead(0xc00015a218, 0xffffffffffffff00, 0x0, 0x0)
+	/usr/local/go/src/internal/poll/fd_poll_runtime.go:90 +0x4b
+internal/poll.(*FD).Accept(0xc00015a200, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0)
+	/usr/local/go/src/internal/poll/fd_unix.go:384 +0x27f
+net.(*netFD).accept(0xc00015a200, 0xc0003f4008, 0x0, 0x0)
+	/usr/local/go/src/net/fd_unix.go:238 +0x53
+net.(*UnixListener).accept(0xc000144570, 0xc0003f4008, 0x0, 0x0)
+	/usr/local/go/src/net/unixsock_posix.go:162 +0x50
+net.(*UnixListener).Accept(0xc000144570, 0xc0001741e0, 0xc000158000, 0x1678280, 0xc0003f4008)
+	/usr/local/go/src/net/unixsock.go:257 +0x50
+mapreduce.(*Master).startRPCServer.func1(0xc000160000, 0xc000158050)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master_rpc.go:41 +0xc2
+created by mapreduce.(*Master).startRPCServer
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master_rpc.go:33 +0x28e
+
+goroutine 23 [chan send, 9 minutes]:
+mapreduce.schedule(0x15ea002, 0x4, 0xc00012e200, 0x14, 0x20, 0xa, 0x15ed03e, 0x8, 0xc00008a120)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/schedule.go:65 +0x226
+mapreduce.Distributed.func1(0x15ed03e, 0x8)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:112 +0x1eb
+mapreduce.(*Master).run(0xc000160000, 0x15ea002, 0x4, 0xc00012e200, 0x14, 0x20, 0xa, 0xc0001481f0, 0xc000148200)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:142 +0x1c1
+created by mapreduce.Distributed
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:108 +0x3e1
+
+goroutine 24 [IO wait, 9 minutes]:
+internal/poll.runtime_pollWait(0x635ce00, 0x72, 0x1941728)
+	/usr/local/go/src/runtime/netpoll.go:173 +0x66
+internal/poll.(*pollDesc).wait(0xc000150198, 0x72, 0x0, 0xffffffffffffffff, 0x1673f60)
+	/usr/local/go/src/internal/poll/fd_poll_runtime.go:85 +0xe4
+internal/poll.(*pollDesc).waitRead(0xc000150198, 0xffffffffffffff00, 0x0, 0x0)
+	/usr/local/go/src/internal/poll/fd_poll_runtime.go:90 +0x4b
+internal/poll.(*FD).Accept(0xc000150180, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0)
+	/usr/local/go/src/internal/poll/fd_unix.go:384 +0x27f
+net.(*netFD).accept(0xc000150180, 0x1006e90, 0x3041808, 0xc0000b2360)
+	/usr/local/go/src/net/fd_unix.go:238 +0x53
+net.(*UnixListener).accept(0xc00009e750, 0xc000405de8, 0x1073f4c, 0xc0000b2360)
+	/usr/local/go/src/net/unixsock_posix.go:162 +0x50
+net.(*UnixListener).Accept(0xc00009e750, 0xc000152580, 0x1f, 0x20, 0x1676040)
+	/usr/local/go/src/net/unixsock.go:257 +0x50
+mapreduce.RunWorker(0xc000152580, 0x1f, 0xc000152740, 0x20, 0x1606c88, 0x1606c90, 0xffffffffffffffff, 0x0)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/worker.go:148 +0x55a
+created by mapreduce.TestParallelBasic
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/test_test.go:165 +0x135
+
+goroutine 4 [sync.Cond.Wait, 9 minutes]:
+sync.runtime_notifyListWait(0xc00013e3d0, 0x1)
+	/usr/local/go/src/runtime/sema.go:510 +0xeb
+sync.(*Cond).Wait(0xc00013e3c0)
+	/usr/local/go/src/sync/cond.go:56 +0x8e
+mapreduce.(*Master).forwardRegistrations(0xc000160000, 0xc00008a120)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:95 +0x13d
+created by mapreduce.Distributed.func1
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:111 +0xbc
+
+goroutine 25 [IO wait, 9 minutes]:
+internal/poll.runtime_pollWait(0x635cd30, 0x72, 0x1941728)
+	/usr/local/go/src/runtime/netpoll.go:173 +0x66
+internal/poll.(*pollDesc).wait(0xc0003e6118, 0x72, 0x0, 0xffffffffffffffff, 0x1673f60)
+	/usr/local/go/src/internal/poll/fd_poll_runtime.go:85 +0xe4
+internal/poll.(*pollDesc).waitRead(0xc0003e6118, 0xffffffffffffff00, 0x0, 0x0)
+	/usr/local/go/src/internal/poll/fd_poll_runtime.go:90 +0x4b
+internal/poll.(*FD).Accept(0xc0003e6100, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0)
+	/usr/local/go/src/internal/poll/fd_unix.go:384 +0x27f
+net.(*netFD).accept(0xc0003e6100, 0x1006e90, 0x3051808, 0xc0003e2000)
+	/usr/local/go/src/net/fd_unix.go:238 +0x53
+net.(*UnixListener).accept(0xc00013c1e0, 0xc0003d9de8, 0x1073f4c, 0xc0003e2000)
+	/usr/local/go/src/net/unixsock_posix.go:162 +0x50
+net.(*UnixListener).Accept(0xc00013c1e0, 0xc000152580, 0x1f, 0x20, 0x1676040)
+	/usr/local/go/src/net/unixsock.go:257 +0x50
+mapreduce.RunWorker(0xc000152580, 0x1f, 0xc0001527e0, 0x20, 0x1606c88, 0x1606c90, 0xffffffffffffffff, 0x0)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/worker.go:148 +0x55a
+created by mapreduce.TestParallelBasic
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/test_test.go:165 +0x135
+
+goroutine 52 [chan send, 9 minutes]:
+mapreduce.(*Master).forwardRegistrations.func1(0xc00008a120, 0xc000152a20, 0x20)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:90 +0x57
+created by mapreduce.(*Master).forwardRegistrations
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:90 +0x111
+
+goroutine 53 [chan send, 9 minutes]:
+mapreduce.(*Master).forwardRegistrations.func1(0xc00008a120, 0xc0000124c0, 0x20)
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:90 +0x57
+created by mapreduce.(*Master).forwardRegistrations
+	/Users/shuxin/go/src/mit/6.824/src/mapreduce/master.go:90 +0x111
+
+rax    0x104
+rbx    0x2
+rcx    0x7ffeefbfeff8
+rdx    0x2f00
+rdi    0x1984820
+rsi    0x2f0100003000
+rbp    0x7ffeefbff080
+rsp    0x7ffeefbfeff8
+r8     0x0
+r9     0xa0
+r10    0x0
+r11    0x202
+r12    0x1984820
+r13    0x16
+r14    0x2f0100003000
+r15    0xfd7c5c0
+rip    0x7fff61fd27de
+rflags 0x203
+cs     0x7
+fs     0x0
+gs     0x0
+*** Test killed with quit: ran too long (10m0s).
+exit status 2
+FAIL	mapreduce	600.020s

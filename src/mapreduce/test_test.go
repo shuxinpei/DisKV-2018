@@ -41,7 +41,7 @@ func ReduceFunc(key string, values []string) string {
 	return ""
 }
 
-// Checks input file agaist output file: each input number should show up
+// Checks input file against output file: each input number should show up
 // in the output file in string sorted order
 func check(t *testing.T, files []string) {
 	output, err := os.Open("mrtmp.test")
@@ -161,6 +161,7 @@ func TestSequentialMany(t *testing.T) {
 
 func TestParallelBasic(t *testing.T) {
 	mr := setup()
+	debug("--start create worker \n")
 	for i := 0; i < 2; i++ {
 		go RunWorker(mr.address, port("worker"+strconv.Itoa(i)),
 			MapFunc, ReduceFunc, -1, nil)

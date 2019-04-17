@@ -48,8 +48,7 @@ func (wk *Worker) DoTask(arg *DoTaskArgs, _ *struct{}) error {
 	wk.Unlock()
 
 	if nc > 1 {
-		// schedule() should never issue more than one RPC at a
-		// time to a given worker.
+		// schedule() should never issue more than one RPC at a time to a given worker.
 		log.Fatal("Worker.DoTask: more than one DoTask sent concurrently to a single worker\n")
 	}
 
