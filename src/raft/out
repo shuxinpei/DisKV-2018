@@ -1,6 +1,9 @@
 Test (2A): initial election ...
-labgob error: lower-case field leaderCommit of AppendEntriesReq in RPC or persist/snapshot will break your Raft
-labgob error: lower-case field voteGranted of RequestVoteReply in RPC or persist/snapshot will break your Raft
-2019/04/17 11:11:55 ClientEnd.Call(): decode reply: gob: DecodeValue of unassignable value
+--- FAIL: TestInitialElection2A (5.00s)
+    config.go:326: expected one leader, got none
+Test (2A): election after network failure ...
+--- FAIL: TestReElection2A (5.02s)
+    config.go:326: expected one leader, got none
+FAIL
 exit status 1
-FAIL	raft	1.243s
+FAIL	raft	10.020s
