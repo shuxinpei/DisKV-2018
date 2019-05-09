@@ -16,7 +16,6 @@ package raft
 //   should send an ApplyMsg to the service (or tester)
 //   in the same server.
 //
-
 import (
 	"labrpc"
 	"math/rand"
@@ -26,75 +25,6 @@ import (
 
 // import "bytes"
 // import "labgob"
-
-//
-// as each Raft peer becomes aware that successive log entries are
-// committed, the peer should send an ApplyMsg to the service (or
-// tester) on the same server, via the applyCh passed to Make(). set
-// CommandValid to true to indicate that the ApplyMsg contains a newly
-// committed log entry.
-//
-// in Lab 3 you'll want to send other kinds of messages (e.g.,
-// snapshots) on the applyCh; at that point you can add fields to
-// ApplyMsg, but set CommandValid to false for these other uses.
-//
-type ApplyMsg struct {
-	CommandValid bool
-	Command      interface{}
-	CommandIndex int
-}
-
-//m log
-type LogEntry struct {
-	LogId 		int
-	LogIndex	int
-	LogTerm		int
-	Command	interface{}
-}
-
-//m Append Entries
-type AppendEntriesArgs struct {
-	Term 			int
-	LeaderId		int
-	PrevLogIndex	int
-	PreLogTerm		int
-	Entries			[]LogEntry
-	LeaderCommit	int
-}
-
-type AppendEntriesReply struct{
-	Term 			int
-	Success 		bool
-
-	//额外机制
-}
-
-type LogReplicationReply struct {
-	Index 			int
-	*AppendEntriesReply
-}
-
-//
-// example RequestVote RPC arguments structure.
-// field names must start with capital letters!
-//
-type RequestVoteArgs struct {
-	// Your data here (2A, 2B).
-	Term 			int
-	CandidateId		int
-	LastLogIndex	int
-	LastLogTerm		int
-}
-
-//
-// example RequestVote RPC reply structure.
-// field names must start with capital letters!
-//
-type RequestVoteReply struct {
-	// Your data here (2A).
-	Term		int
-	VoteGranted bool
-}
 
 type Raft struct {
 	mu        sync.Mutex          // Lock to protect shared access to this peer's state
@@ -123,55 +53,8 @@ type Raft struct {
 	//Volatile state on leaders, reinitialized after election
 	nextIndex 		[]int	//next index of log of each peers to send the log
 	matchIndex		[]int	//for each server's highest log entry known to be replicated
-}
 
-// return currentTerm and whether this server
-// believes it is the leader.
-func (rf *Raft) GetState() (int, bool) {
-	var term int
-	var isleader bool
-	// Your code here (2A).
-	term = rf.currentTerm
-	isleader = rf.votedFor == rf.me
-	return term, isleader
-}
-
-//
-// save Raft's persistent state to stable storage,
-// where it can later be retrieved after a crash and restart.
-// see paper's Figure 2 for a description of what should be persistent.
-//
-func (rf *Raft) persist() {
-	// Your code here (2C).
-	// Example:
-	// w := new(bytes.Buffer)
-	// e := labgob.NewEncoder(w)
-	// e.Encode(rf.xxx)
-	// e.Encode(rf.yyy)
-	// data := w.Bytes()
-	// rf.persister.SaveRaftState(data)
-}
-
-//
-// restore previously persisted state.
-//
-func (rf *Raft) readPersist(data []byte) {
-	if data == nil || len(data) < 1 { // bootstrap without any state?
-		return
-	}
-	// Your code here (2C).
-	// Example:
-	// r := bytes.NewBuffer(data)
-	// d := labgob.NewDecoder(r)
-	// var xxx
-	// var yyy
-	// if d.Decode(&xxx) != nil ||
-	//    d.Decode(&yyy) != nil {
-	//   error...
-	// } else {
-	//   rf.xxx = xxx
-	//   rf.yyy = yyy
-	// }
+	applyCh 		chan ApplyMsg // outgoing channel to service
 }
 
 //
@@ -197,7 +80,8 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	term, isLeader = rf.GetState()
 	if isLeader {
 		rf.mu.Lock()
-		if _, isLeader := rf.GetState(); isLeader{
+		DPrintf("[start]--Leader %v get command, %v", rf.me, command)
+		if _, isLeader := rf.GetState(); !isLeader {
 			defer rf.mu.Unlock()
 			return index, term, false
 		}
@@ -220,162 +104,6 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	return len(rf.logs) -1 , term, isLeader
 }
 
-//
-// the tester calls Kill() when a Raft instance won't
-// be needed again. you are not required to do anything
-// in Kill(), but it might be convenient to (for example)
-// turn off debug output from this instance.
-//
-func (rf *Raft) Kill() {
-	// Your code here, if desired.
-}
-
-//------------选举
-//
-// example RequestVote RPC handler.
-//
-func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
-	// Your code here (2A, 2B).
-	rf.mu.Lock()
-	defer rf.mu.Unlock()
-	if args.Term <= rf.currentTerm {
-		reply.Term = rf.currentTerm
-		reply.VoteGranted = false
-		return
-	}
-	//只有在满足拥有更适合的选举者的时候才会进行重置时间
-	//日志约束条件, log term > rf.lastlog.term || term 相等，但是log index 大于 rf.last log term
-	lastLogIndex := len(rf.logs) - 1
-	lastLogTerm := rf.logs[lastLogIndex].LogTerm
-	if args.LastLogTerm > lastLogTerm ||
-		args.LastLogTerm == lastLogTerm && args.LastLogIndex >= lastLogIndex {
-		rf.votedFor = args.CandidateId
-		rf.currentTerm = args.Term
-		
-		reply.Term = rf.currentTerm
-		reply.VoteGranted = true
-		
-		rf.resetTimer <- struct{}{}
-		return
-	}
-	reply.Term = rf.currentTerm
-	reply.VoteGranted = false
-}
-
-//
-// example code to send a RequestVote RPC to a server.
-// server is the index of the target server in rf.peers[].
-// expects RPC arguments in args.
-// fills in *reply with RPC reply, so caller should
-// pass &reply.
-// the types of the args and reply passed to Call() must be
-// the same as the types of the arguments declared in the
-// handler function (including whether they are pointers).
-//
-// The labrpc package simulates a lossy network, in which servers
-// may be unreachable, and in which requests and replies may be lost.
-// Call() sends a request and waits for a reply. If a reply arrives
-// within a timeout interval, Call() returns true; otherwise
-// Call() returns false. Thus Call() may not return for a while.
-// A false return can be caused by a dead server, a live server that
-// can't be reached, a lost request, or a lost reply.
-//
-// Call() is guaranteed to return (perhaps after a delay) *except* if the
-// handler function on the server side does not return.  Thus there
-// is no need to implement your own timeouts around Call().
-//
-// look at the comments in ../labrpc/labrpc.go for more details.
-//
-// if you're having trouble getting RPC to work, check that you've
-// capitalized all field names in structs passed over RPC, and
-// that the caller passes the address of the reply struct with &, not
-// the struct itself.
-//
-func (rf *Raft) sendRequestVote(server int, args *RequestVoteArgs, reply *RequestVoteReply) bool {
-	DPrintf("%v send request vote to %v", rf.me, server)
-	ok := rf.peers[server].Call("Raft.RequestVote", args, reply)
-	return ok
-}
-
-func (rf *Raft) Election() {
-	DPrintf("peer %v start election", rf.me)
-	var voteargs RequestVoteArgs
-	rf.fillVoteRequestArgs(&voteargs)
-	replys := make(chan RequestVoteReply, len(rf.peers))
-	wg := sync.WaitGroup{}
-	for idx := range rf.peers{
-		if idx == rf.me{
-			rf.resetTimer <- struct{}{}
-		} else {
-			wg.Add(1)
-			go func(idx int) {
-				defer wg.Done()
-				var reply RequestVoteReply
-				if rf.sendRequestVote(idx, &voteargs, &reply){
-					replys <- reply
-				}
-			}(idx)
-		}
-	}
-	go func() {
-		wg.Wait()
-		close(replys)
-	}()
-	//如果有消息回送就会得到，循环直到chan关闭-->解决消息不用全部送达的问题
-	//term 的更新不依赖这次发送，只负责是否能够当选
-	var supportCount int
-	for reply := range replys{
-		if reply.VoteGranted{
-			DPrintf("peer %d : get voted reply, reply: %v", rf.me, reply)
-			if supportCount++; supportCount > len(rf.peers)/2 - 1 {
-				rf.mu.Lock()
-				defer rf.mu.Unlock()
-				DPrintf("peer %d : win", rf.me)
-				rf.votedFor = rf.me
-				go rf.HeartBeatDaemon()
-				return
-			}
-		}
-		//TODO
-		//总觉有点问题
-		if reply.Term > rf.currentTerm{
-			rf.mu.Lock()
-			defer rf.mu.Unlock()
-			rf.votedFor = -1
-			return
-		}
-	}
-}
-
-func (rf *Raft) fillVoteRequestArgs(args *RequestVoteArgs) {
-	rf.mu.Lock()
-	defer rf.mu.Unlock()
-
-	rf.currentTerm += 1
-
-	args.Term			=	rf.currentTerm
-	args.LastLogIndex	=	len(rf.logs) -1
-	args.LastLogTerm	=	rf.logs[args.LastLogIndex].LogTerm
-	args.CandidateId	= 	rf.me
-}
-
-//选举没有异步，出问题
-func (rf *Raft) ElectionDaemon() {
-	for {
-		select {
-		case <-rf.resetTimer:
-			rf.electionTimer.Reset(rf.electionTimeOut)
-			DPrintf("peer %d : reset time", rf.me)
-		case <-rf.electionTimer.C:
-			//没有考虑到，需要重新进行指定
-			DPrintf("peer %d : timeout", rf.me)
-			rf.electionTimer.Reset(rf.electionTimeOut)
-			go rf.Election()
-		}
-	}
-}
-
-//------------心跳，日志消息传递
 func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply){
 	DPrintf("follower %v get message， isHeartBeat %v", rf.me, args.Entries == nil)
 	rf.mu.Lock()
@@ -385,11 +113,27 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		//选举的时候，接收到了新leader的消息
 		if args.Term >= rf.currentTerm{
 			rf.currentTerm 	= args.Term
-			rf.votedFor = -1
+			rf.votedFor = args.LeaderId
 			rf.resetTimer <- struct{}{}
 
 			reply.Term 		= rf.currentTerm
 			reply.Success 	= true
+			if args.PrevLogIndex == len(rf.logs)-1 && args.PreLogTerm == rf.logs[len(rf.logs)-1].LogTerm{
+				if rf.commitIndex != args.LeaderCommit{
+					DPrintf("change commit log index: %v", rf.commitIndex)
+					for rf.commitIndex < args.LeaderCommit{
+						rf.commitIndex++
+						logToApply := rf.logs[rf.commitIndex]
+						reply := ApplyMsg{
+							CommandValid:	true,
+							Command:		logToApply.Command,
+							CommandIndex:	logToApply.LogIndex,
+						}
+						DPrintf("%v write to apply msg, reply %v", rf.me, reply)
+						rf.applyCh <- reply
+					}
+				}
+			}
 		}else{
 			reply.Term 	  = rf.currentTerm
 			reply.Success = false
@@ -399,14 +143,31 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		// 这边需要更多考虑
 		//TODO
 		// 如果存在日志内容，2B最后内容--------
-		if args.Term < rf.currentTerm{
-			reply.Term 		= rf.currentTerm
+		DPrintf("\n[%v] get command vote for %v, arg %+v, \n---> currentTerm %v logs:%+v", rf.me, rf.votedFor, args, rf.currentTerm, rf.logs)
+		currentTerm := rf.currentTerm
+		lenLog := len(rf.logs)-1
+		if args.Term < currentTerm{
+			reply.Term 		= currentTerm
 			reply.Success 	= false
+			DPrintf("[faild], term is old")
+			return
 		}
-		if args.LeaderId == rf.votedFor{
-			for _, log := range args.Entries{
-				rf.logs = append(rf.logs, log)
+		if args.LeaderId == rf.votedFor && args.PrevLogIndex == lenLog && args.PreLogTerm == rf.logs[lenLog].LogTerm {
+			for idx := range args.Entries{
+				logIndex := len(args.Entries)-1-idx
+				log := args.Entries[logIndex]
+				if log.LogIndex < len(rf.logs){
+					rf.logs[log.LogIndex] = log
+				}else{
+					rf.logs = append(rf.logs, log)
+				}
 			}
+			reply.Success = true
+			reply.Term = currentTerm
+			reply.MatchedIndex = args.Entries[0].LogIndex
+		}else{
+			reply.Success = false
+			reply.Term = currentTerm
 		}
 	}
 }
@@ -416,54 +177,33 @@ func (rf *Raft) SendAppendEntries(server int, args *AppendEntriesArgs, reply *Ap
 	return ok
 }
 
-func (rf *Raft) HeartBeat(arg *AppendEntriesArgs, peer int){
-	var reply AppendEntriesReply
-	if rf.SendAppendEntries(peer, arg, &reply){
-		if !reply.Success{
-			rf.mu.Lock()
-			defer rf.mu.Unlock()
-			if rf.currentTerm < reply.Term{
-				rf.currentTerm = reply.Term
-				rf.votedFor	   = -1
-			}
-		}
-	}
-}
-
-func (rf *Raft) fillAppendEntriesArg(args *AppendEntriesArgs, log LogEntry){
+func (rf *Raft) fillAppendEntriesArg(args *AppendEntriesArgs, idx int, isHeartBeat bool){
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	//如果是心跳的话，需要考虑什么
-	args.Term			=	rf.currentTerm
-	args.Entries		= 	append(args.Entries, log)
-	args.LeaderCommit	=	rf.commitIndex
-	args.LeaderId		=	rf.me
-	args.PrevLogIndex	=	len(rf.logs) - 1
-	args.PreLogTerm		=	rf.logs[args.PrevLogIndex].LogTerm
-}
-
-func (rf *Raft) HeartBeatDaemon() {
-	for {
-		if _, isLeader := rf.GetState(); isLeader {
-			var appendEntry AppendEntriesArgs
-			rf.fillAppendEntriesArg(&appendEntry, nil)
-			for idx := range rf.peers {
-				if idx == rf.me{
-					rf.resetTimer <- struct{}{}
-				}else{
-					go rf.HeartBeat(&appendEntry, idx)
-				}
-			}
-			time.Sleep(rf.heartBeatInterval)
-		}else{
-			break
-		}
+	if !isHeartBeat{
+		args.Term			=	rf.currentTerm
+		args.Entries		= 	append(args.Entries, rf.logs[idx])
+		args.LeaderCommit	=	rf.commitIndex
+		args.LeaderId		=	rf.me
+		args.PrevLogIndex	=	idx-1
+		args.PreLogTerm		=	rf.logs[args.PrevLogIndex].LogTerm
+		DPrintf("[fill AppendEntries Command]--%v",args)
+	}else{
+		args.Term			=	rf.currentTerm
+		/*args.Entries		= 	append(args.Entries, rf.logs[idx])*/
+		args.LeaderCommit	=	rf.commitIndex
+		args.LeaderId		=	rf.me
+		args.PrevLogIndex	=	len(rf.logs) - 1
+		args.PreLogTerm		=	rf.logs[args.PrevLogIndex].LogTerm
 	}
+
 }
 
 func (rf *Raft) LogReplication(log LogEntry){
+	DPrintf("[replication] leader %v start ", rf.me)
 	wg := sync.WaitGroup{}
-	args := make([]*AppendEntriesArgs, len(rf.peers))
+	var arg AppendEntriesArgs
 	undoneChan := make(chan int, len(rf.peers) - 1)
 	replys := make(chan LogReplicationReply, len(rf.peers) - 1)
 	for idx := range rf.peers{
@@ -479,24 +219,43 @@ func (rf *Raft) LogReplication(log LogEntry){
 		close(undoneChan)
 		close(replys)
 	}()
-	for idx := range args{
-		var arg AppendEntriesArgs
-		rf.fillAppendEntriesArg(&arg, rf.logs)
-		args[idx] = &arg
-	}
-	DPrintf("%v",args)
+	rf.fillAppendEntriesArg(&arg, len(rf.logs)-1, false)
+
 	for follower := range undoneChan{
 		go func(follower int) {
-			var reply *AppendEntriesReply
-			ok := rf.SendAppendEntries(follower, args[follower], reply)
+			var reply AppendEntriesReply
+			ok := rf.SendAppendEntries(follower, &arg, &reply)
 			if ok{
+				DPrintf("----------%+v",reply)
 				if reply.Success{
-					replys <- LogReplicationReply{follower, reply}
-					args[follower].PrevLogIndex++
+					DPrintf("[success]")
+					replys <- LogReplicationReply{follower, &reply}
+					rf.nextIndex[follower]++
+					rf.matchIndex[follower]++
 					wg.Done()
 				}else{
-					args[follower].PrevLogIndex--
-					undoneChan <- follower
+					if reply.Term > rf.currentTerm{
+						rf.votedFor = -1
+						return
+					}
+					rf.nextIndex[follower]--
+					rf.matchIndex[follower]--
+					var arg AppendEntriesArgs
+					offset := 1
+					rf.fillAppendEntriesArg(&arg, len(rf.logs)-1-offset,false)
+					for {
+						ok := rf.SendAppendEntries(follower, &arg, &reply)
+						if ok{
+							rf.matchIndex[follower] = reply.MatchedIndex
+							break
+						}else{
+							rf.nextIndex[follower]--
+							rf.matchIndex[follower]--
+							offset++
+							rf.fillAppendEntriesArg(&arg, len(rf.logs)-1-offset,false)
+						}
+					}
+					//挫一点，先和heartbeat分开
 				}
 			}else{
 				undoneChan <- follower
@@ -509,12 +268,23 @@ func (rf *Raft) LogReplication(log LogEntry){
 			if logReceiveCount++; logReceiveCount > len(rf.peers)/2 {
 				//log 可以提交了,++是否可以？
 				rf.commitIndex++
+				reply := ApplyMsg{
+					CommandValid	:true,
+					Command			: log.Command,
+					CommandIndex	: log.LogIndex,
+				}
+				rf.applyCh <- reply
+				rf.lastApplied++
+				DPrintf("------------commit Index %v", rf.commitIndex)
+				DPrintf("%v write to apply msg, reply %v", rf.me, reply)
+				return
 				//TODO
 				// 复制之前所有日志到状态机
 			}
 		}
 	}
 }
+
 
 //
 // the service or tester wants to create a Raft server. the ports
@@ -543,10 +313,14 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.votedFor = -1				//-> 初始化 0 不可取
 	rf.logs = make([]LogEntry,1)	//初始化一个log，从1开始进行，否则选举参数会出现问题
 
+	rf.applyCh = applyCh
 	DPrintf("peer %d : election(%s) heartbeat(%s)\n", rf.me, rf.electionTimeOut, rf.heartBeatInterval)
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
 
 	go rf.ElectionDaemon()
+
+	//go rf.LogConsistencyDaemon()
+
 	return rf
 }
