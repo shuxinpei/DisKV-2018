@@ -1,5 +1,11 @@
 package raft
 
+import (
+	"math/rand"
+	"sync"
+	"time"
+)
+
 //
 // as each Raft peer becomes aware that successive log entries are
 // committed, the peer should send an ApplyMsg to the service (or
@@ -38,9 +44,6 @@ type AppendEntriesArgs struct {
 type AppendEntriesReply struct{
 	Term 			int
 	Success 		bool
-
-	//额外机制
-	MatchedIndex	int
 }
 
 type LogReplicationReply struct {
@@ -70,3 +73,65 @@ type RequestVoteReply struct {
 	VoteGranted bool
 }
 
+type appendCond struct {
+	mu 		 	*MMutex
+	sending  	bool
+	sendTimer   *time.Timer
+	cond 	 	*sync.Cond
+	//先按照自己思路写一下
+	//exit bool
+}
+
+func (ac *appendCond) TimeOutFree() {
+	go func() {
+		for {
+			select {
+			case <-ac.sendTimer.C:
+				if ac.sending{
+					ac.mu.Lock("TimeOutFree", nil, false)
+					ac.sending = false
+					ac.cond.Signal()
+					ac.mu.Unlock("TimeOutFree", nil, false)
+				}
+			}
+		}
+	}()
+}
+
+type MMutex struct {
+	id			int
+	mu			sync.Mutex
+	lockTime 	int64
+}
+
+func NewMMutex() *MMutex{
+	mmu := &MMutex{
+		id:		rand.Intn(1e8) + 1e8,
+	}
+	return mmu
+}
+
+func (mmu *MMutex) Lock(funcName string, rf *Raft, mute bool){
+	mmu.mu.Lock()
+	if !mute{
+		waitTime := time.Now().Unix() - mmu.lockTime
+		mmu.lockTime = time.Now().Unix()
+		if rf != nil {
+			LPrintf("[%v] %v LLLock--id %v [waitTime %v]", funcName, rf.me, mmu.id, waitTime)
+		}else {
+			LPrintf("[%v] LLLock--id %v [waitTime %v]", funcName, mmu.id, waitTime)
+		}
+	}
+}
+
+func (mmu *MMutex) Unlock(funcName string, rf *Raft, mute bool){
+	mmu.mu.Unlock()
+	if !mute{
+		duration := time.Now().Unix() - mmu.lockTime
+		if rf != nil {
+			LPrintf("[%v] %v UULock--id %v [time: %v]", funcName, rf.me, mmu.id, duration)
+		}else {
+			LPrintf("[%v] UULock--id %v [time: %v]", funcName, mmu.id, duration)
+		}
+	}
+}

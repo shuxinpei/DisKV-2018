@@ -263,7 +263,7 @@ func (rf *Raft) sendLogEntry(follower int) {
 	if rf.peers[follower].Call("Raft.AppendEntries", &args, &reply) {
 		rf.mu.Lock()
 		if !reply.Success {
-			if reply.Term > rf.currentTerm { // the leader is obsolete
+			if reply.Term > rf.currentTerm { // the leader is y
 				rf.stepDown(reply.Term)
 			} else { // follower is inconsistent with leader
 				rf.nextIndex[follower] = Max(1, Min(reply.ConflictIndex, rf.logIndex))
@@ -449,4 +449,4 @@ func Make(peers []*labrpc.ClientEnd, me int, persister *Persister, applyCh chan 
 	}()
 	return rf
 }
-**/
+*/

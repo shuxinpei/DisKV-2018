@@ -1,5 +1,7 @@
 package raft
 
+import "sync"
+
 //
 // support for Raft and kvraft to save persistent
 // Raft state (log &c) and k/v server snapshots.
@@ -9,7 +11,7 @@ package raft
 // test with the original before submitting.
 //
 
-import "sync"
+
 
 type Persister struct {
 	mu        sync.Mutex

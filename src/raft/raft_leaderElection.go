@@ -22,7 +22,7 @@ func (rf *Raft) GetState() (int, bool) {
 	var isleader bool
 	// Your code here (2A).
 	term = rf.currentTerm
-	isleader = rf.votedFor == rf.me
+	isleader = rf.isLeader
 	return term, isleader
 }
 
@@ -65,10 +65,10 @@ func (rf *Raft) readPersist(data []byte) {
 }
 
 func (rf *Raft) fillVoteRequestArgs(args *RequestVoteArgs) {
-	rf.mu.Lock()
-	defer rf.mu.Unlock()
+	Lock("fillVoteRequestArgs", rf,true)
 
-	rf.currentTerm += 1
+	rf.votedFor = rf.me
+	rf.currentTerm++
 
 	args.Term			=	rf.currentTerm
 	args.LastLogIndex	=	len(rf.logs) -1
@@ -76,14 +76,11 @@ func (rf *Raft) fillVoteRequestArgs(args *RequestVoteArgs) {
 	args.CandidateId	= 	rf.me
 }
 
-//------------选举
-//
-// example RequestVote RPC handler.
-//
 func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (2A, 2B).
-	rf.mu.Lock()
-	defer rf.mu.Unlock()
+	Lock("RequestVote", rf, true)
+	//如果不加，则会出现一个周期内出现两个leader的情况
+	//如果加了，则会出现大家都选举自己的情况，导致没有leader
 	if args.Term <= rf.currentTerm {
 		reply.Term = rf.currentTerm
 		reply.VoteGranted = false
@@ -95,17 +92,20 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	lastLogTerm := rf.logs[lastLogIndex].LogTerm
 	if args.LastLogTerm > lastLogTerm ||
 		args.LastLogTerm == lastLogTerm && args.LastLogIndex >= lastLogIndex {
+
 		rf.votedFor = args.CandidateId
 		rf.currentTerm = args.Term
-
+		rf.isLeader = false
 		reply.Term = rf.currentTerm
 		reply.VoteGranted = true
 
 		rf.resetTimer <- struct{}{}
+		DPrintf("[ Election ] %v got vote from %v, term = %v",args.CandidateId, rf.me, args.Term)
 		return
 	}
 	reply.Term = rf.currentTerm
 	reply.VoteGranted = false
+	return
 }
 
 //
@@ -138,7 +138,6 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 // the struct itself.
 //
 func (rf *Raft) sendRequestVote(server int, args *RequestVoteArgs, reply *RequestVoteReply) bool {
-	DPrintf("%v send request vote to %v", rf.me, server)
 	ok := rf.peers[server].Call("Raft.RequestVote", args, reply)
 	return ok
 }
@@ -172,21 +171,18 @@ func (rf *Raft) Election() {
 	var supportCount int
 	for reply := range replys{
 		if reply.VoteGranted{
-			DPrintf("peer %d : get voted reply, reply: %v", rf.me, reply)
-			if supportCount++; supportCount > len(rf.peers)/2 - 1 {
-				rf.mu.Lock()
-				defer rf.mu.Unlock()
-				DPrintf("peer %d : win", rf.me)
-				rf.votedFor = rf.me
 
-				rf.matchIndex = make([]int, len(rf.peers))
-				for idx := range rf.nextIndex{
-					rf.matchIndex[idx] = len(rf.logs) - 1
-				}
-				rf.nextIndex = make([]int, len(rf.peers))
+			if supportCount++; supportCount > len(rf.peers)/2 - 1 {
+				Lock("Election-->success", rf,false)
+				DPrintf("peer %d : win", rf.me)
+				rf.votedFor = -1
+				rf.isLeader = true
+
 				for idx := range rf.nextIndex{
 					rf.nextIndex[idx] = len(rf.logs)
+					rf.matchIndex[idx] = len(rf.logs) - 1
 				}
+
 				go rf.HeartBeatDaemon()
 				return
 			}
@@ -194,9 +190,9 @@ func (rf *Raft) Election() {
 		//TODO
 		//总觉有点问题
 		if reply.Term > rf.currentTerm{
-			rf.mu.Lock()
-			defer rf.mu.Unlock()
+			Lock("Election-->i am old term", rf,false)
 			rf.votedFor = -1
+			rf.isLeader = false
 			return
 		}
 	}
@@ -207,9 +203,7 @@ func (rf *Raft) ElectionDaemon() {
 		select {
 		case <-rf.resetTimer:
 			rf.electionTimer.Reset(rf.electionTimeOut)
-			DPrintf("peer %d : reset time", rf.me)
 		case <-rf.electionTimer.C:
-			//没有考虑到，需要重新进行指定
 			DPrintf("peer %d : timeout", rf.me)
 			rf.electionTimer.Reset(rf.electionTimeOut)
 			go rf.Election()
@@ -220,13 +214,12 @@ func (rf *Raft) ElectionDaemon() {
 func (rf *Raft) HeartBeat(arg *AppendEntriesArgs, peer int){
 	var reply AppendEntriesReply
 	if rf.SendAppendEntries(peer, arg, &reply){
-		if !reply.Success{
-			rf.mu.Lock()
-			defer rf.mu.Unlock()
-			if rf.currentTerm < reply.Term{
-				rf.currentTerm = reply.Term
-				rf.votedFor	   = -1
-			}
+		if !reply.Success {
+			DPrintf("heartBeat failed , leader %v peer %v", arg.LeaderId, peer)
+			Lock("HeartBeat Reply faild", rf,false)
+			 rf.currentTerm  	= reply.Term
+			 rf.votedFor	  	= -1
+			 rf.isLeader		= false
 		}
 	}
 }
@@ -235,7 +228,7 @@ func (rf *Raft) HeartBeatDaemon() {
 	for {
 		if _, isLeader := rf.GetState(); isLeader {
 			var appendEntry AppendEntriesArgs
-			rf.fillAppendEntriesArg(&appendEntry, -1, true)
+			rf.fillAppendEntriesArg(&appendEntry, -1,-1, true)
 			for peer := range rf.peers {
 				if peer == rf.me{
 					rf.resetTimer <- struct{}{}
