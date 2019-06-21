@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoTestManager">
+    <enabled-run-configurations>
+      <run-configuration type="GoTestRunConfiguration" name="TestInitialElection2A in raft" />
+    </enabled-run-configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c6bd77bc-493b-4a15-9aa4-87b03d3cd9ba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/raft/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/common.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raft/persister.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/persister.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raft/raft.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/raft.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raft/raft_leaderElection.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/raft_leaderElection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raft/test_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/test_test.go" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/raft/raft.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="62" column="1" lean-forward="true" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
+              <folding>
+                <element signature="e#14#16#0" />
+                <element signature="e#652#669#0" />
+                <element signature="e#985#1018#0" />
+                <element signature="e#1926#1928#0" />
+                <element signature="e#2668#3497#0" />
+                <element signature="e#2783#3454#0" />
+                <element signature="e#2863#2938#0" />
+                <element signature="e#2956#3070#0" />
+                <element signature="e#3232#3263#0" />
+                <element signature="e#3580#6415#0" />
+                <element signature="e#3716#3751#0" />
+                <element signature="e#3800#4728#0" />
+                <element signature="e#4044#4157#0" />
+                <element signature="e#4445#4587#0" />
+                <element signature="e#4733#6413#0" />
+                <element signature="e#4737#4782#0" />
+                <element signature="e#5066#5439#0" />
+                <element signature="e#5676#6356#0" />
+                <element signature="e#5708#5929#0" />
+                <element signature="e#5817#5865#0" />
+                <element signature="e#5869#5924#0" />
+                <element signature="e#5970#6117#0" />
+                <element signature="e#6015#6061#0" />
+                <element signature="e#6065#6112#0" />
+                <element signature="e#6520#6598#0" />
+                <element signature="e#6698#7452#0" />
+                <element signature="e#6812#7217#0" />
+                <element signature="e#6816#6897#0" />
+                <element signature="e#6986#7089#0" />
+                <element signature="e#7026#7085#0" />
+                <element signature="e#7093#7150#0" />
+                <element signature="e#7222#7450#0" />
+                <element signature="e#7226#7281#0" />
+                <element signature="e#7865#10541#0" />
+                <element signature="e#8085#8130#0" />
+                <element signature="e#8206#9748#0" />
+                <element signature="e#8227#8694#0" />
+                <element signature="e#8331#8507#0" />
+                <element signature="e#8390#8502#0" />
+                <element signature="e#8700#9745#0" />
+                <element signature="e#8754#8947#0" />
+                <element signature="e#9172#9574#0" />
+                <element signature="e#9305#9349#0" />
+                <element signature="e#9752#10539#0" />
+                <element signature="e#9903#10523#0" />
+                <element signature="e#9974#10035#0" />
+                <element signature="e#10090#10483#0" />
+                <element signature="e#10148#10329#0" />
+                <element signature="e#10208#10323#0" />
+                <element signature="e#10579#10906#0" />
+                <element signature="e#10630#10904#0" />
+                <element signature="e#10685#10901#0" />
+                <element signature="e#10726#10748#0" />
+                <element signature="e#10785#10897#0" />
+                <element signature="e#10940#11726#0" />
+                <element signature="e#10953#11721#0" />
+                <element signature="e#10961#11718#0" />
+                <element signature="e#11046#11655#0" />
+                <element signature="e#11082#11650#0" />
+                <element signature="e#11155#11644#0" />
+                <element signature="e#11219#11343#0" />
+                <element signature="e#11374#11399#0" />
+                <element signature="e#11728#11730#0" />
+                <element signature="e#12374#13597#0" />
+                <element signature="e#13132#13375#0" />
+                <element signature="e#13520#13551#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/raft/common.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="303">
+              <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/raft/raft_leaderElection.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-378">
+              <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+              <folding>
+                <element signature="e#303#338#0" />
+                <element signature="e#455#586#0" />
+                <element signature="e#805#1461#0" />
+                <element signature="e#1115#1153#0" />
+                <element signature="e#1181#1264#0" />
+                <element signature="e#1194#1242#0" />
+                <element signature="e#1549#2718#0" />
+                <element signature="e#1584#1629#0" />
+                <element signature="e#2007#2064#0" />
+                <element signature="e#2070#2716#0" />
+                <element signature="e#2396#2713#0" />
+                <element signature="e#2598#2648#0" />
+                <element signature="e#2652#2709#0" />
+                <element signature="e#2779#3028#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/raft/test_test.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1679">
+              <caret line="639" column="44" selection-start-line="639" selection-start-column="44" selection-end-line="639" selection-end-column="44" />
+              <folding>
+                <element signature="n#!!block;n#TestInitialElection2A#0" />
+                <element signature="e#1044#1121#0" />
+                <element signature="n#!!block;n#TestReElection2A#0" />
+                <element signature="n#!!block;n#TestBasicAgree2B#0" />
+                <element signature="e#2389#2627#0" />
+                <element signature="e#2436#2491#0" />
+                <element signature="e#2560#2624#0" />
+                <element signature="n#!!block;n#TestFailAgree2B#0" />
+                <element signature="n#!!block;n#TestFailNoAgree2B#0" />
+                <element signature="e#4176#4218#0" />
+                <element signature="e#4234#4284#0" />
+                <element signature="e#4365#4415#0" />
+                <element signature="e#4772#4815#0" />
+                <element signature="e#4845#4891#0" />
+                <element signature="n#!!block;n#TestConcurrentStarts2B#0" />
+                <element signature="n#!!block;n#TestRejoin2B#0" />
+                <element signature="n#!!block;n#TestBackup2B#0" />
+                <element signature="n#!!block;n#TestCount2B#0" />
+                <element signature="n#!!block;n#TestPersist12C#0" />
+                <element signature="n#!!block;n#TestPersist32C#0" />
+                <element signature="n#!!block;n#TestFigure82C#0" />
+                <element signature="n#!!block;n#TestUnreliableAgree2C#0" />
+                <element signature="n#!!block;n#TestFigure8Unreliable2C#0" />
+                <element signature="n#!!block;n#internalChurn#0" />
+                <element signature="n#!!block;n#TestReliableChurn2C#0" />
+                <element signature="n#!!block;n#TestUnreliableChurn2C#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/raft/persister.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>update commitId</find>
+      <find>AppendEntries log</find>
+      <find>rf.appendStatus[peer]</find>
+      <find>fail</find>
+      <find>PASS</find>
+      <find>FAIl</find>
+      <find>LeaderComm</find>
+      <find>args.LeaderCommit</find>
+      <find>AppendEntries failed</find>
+      <find>send msg fail</find>
+      <find>rf.log</find>
+      <find>send msg arg</find>
+      <find>rf.logs</find>
+      <find>send msg</find>
+      <find>rf.appendStatus[peer].Finish(rf)</find>
+      <find>heartbeat</find>
+      <find>raft_leaderElection.go</find>
+      <find>persister</find>
+      <find>HeartBeat Reply faild</find>
+      <find>appendEntries</find>
+      <find>[appendEntries]</find>
+      <find>------</find>
+      <find>send msg success</find>
+      <find>rf.currentTerm</find>
+      <find>----</find>
+      <find>AppendEntries false] 3</find>
+      <find>update term or</find>
+      <find>AppendEntries</find>
+      <find>[send msg success]</find>
+      <find>cond</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src/raft</dir>
+    </dirStrings>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="urls">
+      <list>
+        <option value="file://$PROJECT_DIR$" />
+      </list>
+    </option>
+    <option name="useGoPathFromSystemEnvironment" value="false" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/mapreduce/common_rpc.go" />
+        <option value="$PROJECT_DIR$/src/mapreduce/common_map.go" />
+        <option value="$PROJECT_DIR$/src/mapreduce/common.go" />
+        <option value="$PROJECT_DIR$/src/mapreduce/common_reduce.go" />
+        <option value="$PROJECT_DIR$/src/main/wc.go" />
+        <option value="$PROJECT_DIR$/src/mapreduce/master.go" />
+        <option value="$PROJECT_DIR$/src/mapreduce/worker.go" />
+        <option value="$PROJECT_DIR$/src/mapreduce/master_rpc.go" />
+        <option value="$PROJECT_DIR$/src/mapreduce/test_test.go" />
+        <option value="$PROJECT_DIR$/src/mapreduce/schedule.go" />
+        <option value="$PROJECT_DIR$/src/main/ii.go" />
+        <option value="$PROJECT_DIR$/src/labrpc/labrpc.go" />
+        <option value="$PROJECT_DIR$/src/raft/xingdl/config.go" />
+        <option value="$PROJECT_DIR$/src/raft/xingdl/persister.go" />
+        <option value="$PROJECT_DIR$/src/raft/xingdl/raft.go" />
+        <option value="$PROJECT_DIR$/src/raft/xingdl/test_test.go" />
+        <option value="$PROJECT_DIR$/src/raft/xingdl/util.go" />
+        <option value="$PROJECT_DIR$/src/raft/wqlin.go" />
+        <option value="$PROJECT_DIR$/src/raft/out" />
+        <option value="$PROJECT_DIR$/src/raft/TestFailAgree2B" />
+        <option value="$PROJECT_DIR$/src/raft/outTest2A" />
+        <option value="$PROJECT_DIR$/src/raft/test2A.sh" />
+        <option value="$PROJECT_DIR$/src/raft/test2B.sh" />
+        <option value="$PROJECT_DIR$/src/raft/testOut/outTest2A" />
+        <option value="$PROJECT_DIR$/src/raft/config.go" />
+        <option value="$PROJECT_DIR$/src/raft/util.go" />
+        <option value="$PROJECT_DIR$/src/raft/testOut/2Btest.sh" />
+        <option value="$PROJECT_DIR$/src/raft/testOut/testBackUp2B" />
+        <option value="$PROJECT_DIR$/src/raft/testOut/TestConcurrentStarts2B" />
+        <option value="$PROJECT_DIR$/src/raft/2Btest.sh" />
+        <option value="$PROJECT_DIR$/src/raft/persister.go" />
+        <option value="$PROJECT_DIR$/src/raft/common.go" />
+        <option value="$PROJECT_DIR$/src/raft/TestBackup2B" />
+        <option value="$PROJECT_DIR$/src/raft/raft.go" />
+        <option value="$PROJECT_DIR$/src/raft/test_test.go" />
+        <option value="$PROJECT_DIR$/src/raft/raft_leaderElection.go" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6.824" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6.824" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6.824" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6.824" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="kvraft" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6.824" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="labgob" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6.824" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="labrpc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6.824" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="raft" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6.824" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="shardmaster" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="6.824" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Go SDK 1.11.4" type="20ee2d1f:SyntheticLibraryElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/raft" />
+      <recent name="$PROJECT_DIR$/src/raft/xingdl" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/raft" />
+      <recent name="$PROJECT_DIR$/src/raft/testOut" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Go Test.TestInitialElection2A in raft">
+    <configuration name="TestBasicAgree2B in raft" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="6.824" />
+      <working_directory value="$PROJECT_DIR$/src/raft" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="raft" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestBasicAgree2B$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestInitialElection2A in raft" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="6.824" />
+      <working_directory value="$PROJECT_DIR$/src/raft" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="raft" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestInitialElection2A$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestSequentialSingle in mit/6.824/src/mapreduce" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="6.824" />
+      <working_directory value="$PROJECT_DIR$/src/mapreduce" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="mit/6.824/src/mapreduce" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestSequentialSingle$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestInitialElection2A in raft" />
+        <item itemvalue="Go Test.TestBasicAgree2B in raft" />
+        <item itemvalue="Go Test.TestSequentialSingle in mit/6.824/src/mapreduce" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TestHistory">
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 16h 53m 37s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 16h 55m 46s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 16h 56m 59s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 17h 00m 31s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 17h 01m 18s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 17h 01m 23s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 17h 01m 36s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 17h 01m 45s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 17h 01m 54s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestInitialElection2A_in_raft - 2019.05.31 at 17h 03m 09s.xml">
+      <configuration name="TestInitialElection2A in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49928263" visible="true" weight="0.17596567" />
+      <window_info id="Structure" order="1" sideWeight="0.50071734" side_tool="true" weight="0.20509471" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.030181086" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.544784" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info active="true" anchor="bottom" x="706" y="45" width="670" height="855" id="Terminal" order="10" type="WINDOWED" visible="true" weight="0.4573235" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Json Parser" order="4" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49928263" visible="true" weight="0.13471779" />
+      <window_info id="Structure" order="1" sideWeight="0.50071734" side_tool="true" weight="0.20509471" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.030181086" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.544784" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info active="true" anchor="bottom" x="1159" y="-165" width="746" height="165" id="Terminal" order="10" type="WINDOWED" visible="true" weight="0.4573235" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Json Parser" order="4" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/mapreduce/common_map.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="25" column="34" lean-forward="true" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mapreduce/common_reduce.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mapreduce/schedule.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="90" column="25" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/encoding/gob/decoder.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="200" column="71" lean-forward="true" selection-start-line="200" selection-start-column="71" selection-end-line="200" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/xingdl/persister.go" />
+    <entry file="file://$PROJECT_DIR$/src/raft/xingdl/config.go" />
+    <entry file="file://$PROJECT_DIR$/src/raft/xingdl/raft.go" />
+    <entry file="file://$PROJECT_DIR$/src/raft/xingdl/util.go" />
+    <entry file="file://$PROJECT_DIR$/src/raft/xingdl/test_test.go" />
+    <entry file="file:///usr/local/go/src/reflect/value.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="446" selection-start-line="446" selection-end-line="446" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/out" />
+    <entry file="file://$PROJECT_DIR$/src/raft/outTest2A" />
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/outTest2A">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/TestFailAgree2B" />
+    <entry file="file:///usr/local/go/src/time/sleep.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/runtime/sema.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="58" column="41" lean-forward="true" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/sync/mutex.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="200" selection-start-line="200" selection-end-line="200" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/math/rand/rng.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="233" selection-start-line="233" selection-end-line="233" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/math/rand/rand.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="298" column="5" selection-start-line="298" selection-start-column="5" selection-end-line="298" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/runtime/asm_amd64.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5873">
+          <caret line="1332" selection-start-line="1332" selection-end-line="1332" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/testing/testing.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="826" selection-start-line="826" selection-end-line="826" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/prof.cpu" />
+    <entry file="file://$PROJECT_DIR$/src/raft/raft.test" />
+    <entry file="file:///usr/local/go/src/time/time.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="1111" column="16" selection-start-line="1111" selection-start-column="16" selection-end-line="1111" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/test2A.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/testBackUp2B">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4280">
+          <caret line="938" column="26" selection-start-line="938" selection-start-column="26" selection-end-line="938" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/TestCount2B">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2808">
+          <caret line="904" column="24" selection-start-line="904" selection-start-column="24" selection-end-line="904" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/test2B.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/2B">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-93926">
+          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/TestConcurrentStarts2B">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="1169" column="45" lean-forward="true" selection-start-line="1169" selection-start-column="45" selection-end-line="1169" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/labgob/labgob.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/labrpc/labrpc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="401" selection-start-line="401" selection-end-line="401" />
+          <folding>
+            <element signature="e#4211#4712#0" />
+            <element signature="e#4544#4696#0" />
+            <element signature="e#4552#4693#0" />
+            <element signature="e#4557#4689#0" />
+            <element signature="e#4569#4654#0" />
+            <element signature="e#4658#4684#0" />
+            <element signature="e#4743#4762#0" />
+            <element signature="e#4802#4861#0" />
+            <element signature="e#4907#4972#0" />
+            <element signature="e#5014#5075#0" />
+            <element signature="e#5227#5465#0" />
+            <element signature="e#5357#5395#0" />
+            <element signature="e#5565#5707#0" />
+            <element signature="e#5673#5691#0" />
+            <element signature="e#5919#6021#0" />
+            <element signature="e#6073#6172#0" />
+            <element signature="e#6146#6158#0" />
+            <element signature="e#6678#6982#0" />
+            <element signature="e#6683#6978#0" />
+            <element signature="e#6695#6733#0" />
+            <element signature="e#6737#6973#0" />
+            <element signature="e#6864#6973#0" />
+            <element signature="e#6881#6965#0" />
+            <element signature="e#7430#7535#0" />
+            <element signature="e#7519#7531#0" />
+            <element signature="e#7589#7676#0" />
+            <element signature="e#7660#7672#0" />
+            <element signature="e#7732#8069#0" />
+            <element signature="e#8033#8064#0" />
+            <element signature="e#8075#8104#0" />
+            <element signature="e#8113#8539#0" />
+            <element signature="e#8189#8300#0" />
+            <element signature="e#8306#8430#0" />
+            <element signature="e#8491#8535#0" />
+            <element signature="e#8519#8531#0" />
+            <element signature="e#8680#8982#0" />
+            <element signature="e#8753#8811#0" />
+            <element signature="e#9049#9118#0" />
+            <element signature="e#9176#9246#0" />
+            <element signature="e#9415#9493#0" />
+            <element signature="e#9587#9658#0" />
+            <element signature="e#9758#9852#0" />
+            <element signature="e#10128#10220#0" />
+            <element signature="e#10248#10316#0" />
+            <element signature="e#10361#10429#0" />
+            <element signature="e#10798#11069#0" />
+            <element signature="e#10856#10893#0" />
+            <element signature="e#11054#11066#0" />
+            <element signature="e#11106#11162#0" />
+            <element signature="e#11282#11388#0" />
+            <element signature="e#11434#12260#0" />
+            <element signature="e#11660#12245#0" />
+            <element signature="e#12067#12162#0" />
+            <element signature="e#12168#12242#0" />
+            <element signature="e#12329#13296#0" />
+            <element signature="e#12375#13035#0" />
+            <element signature="e#12858#12889#0" />
+            <element signature="e#13014#13032#0" />
+            <element signature="e#13041#13294#0" />
+            <element signature="e#13099#13136#0" />
+            <element signature="e#13279#13291#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/TestPersist32C">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16990" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/TestPersist12C">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68167">
+          <caret line="309" column="10" selection-start-line="309" selection-start-column="6" selection-end-line="309" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/test.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/testOut/TestPersist22C">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7285">
+          <caret line="6664" column="38" selection-start-line="6664" selection-start-column="34" selection-end-line="6664" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="425" column="19" selection-start-line="425" selection-start-column="19" selection-end-line="425" selection-end-column="19" />
+          <folding>
+            <element signature="e#453#553#0" />
+            <element signature="e#577#685#0" />
+            <element signature="e#1481#1614#0" />
+            <element signature="e#1509#1587#0" />
+            <element signature="e#2312#2937#0" />
+            <element signature="e#2647#2688#0" />
+            <element signature="e#2724#2795#0" />
+            <element signature="e#2821#2935#0" />
+            <element signature="e#5429#5605#0" />
+            <element signature="e#5548#5603#0" />
+            <element signature="e#5636#5774#0" />
+            <element signature="e#5675#5733#0" />
+            <element signature="e#5702#5730#0" />
+            <element signature="e#6133#6204#0" />
+            <element signature="e#6590#6662#0" />
+            <element signature="e#6713#6749#0" />
+            <element signature="e#6949#6985#0" />
+            <element signature="e#7160#7765#0" />
+            <element signature="e#7310#7454#0" />
+            <element signature="e#7335#7450#0" />
+            <element signature="e#7392#7445#0" />
+            <element signature="e#7519#7691#0" />
+            <element signature="e#7544#7618#0" />
+            <element signature="e#7651#7687#0" />
+            <element signature="e#7716#7762#0" />
+            <element signature="e#7906#8149#0" />
+            <element signature="e#7948#8134#0" />
+            <element signature="e#7972#8131#0" />
+            <element signature="e#8030#8053#0" />
+            <element signature="e#8076#8127#0" />
+            <element signature="e#8218#8418#0" />
+            <element signature="e#8248#8416#0" />
+            <element signature="e#8272#8413#0" />
+            <element signature="e#8333#8409#0" />
+            <element signature="e#11736#12179#0" />
+            <element signature="e#11786#12177#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raftCopy/raft/persister.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1633">
+          <caret line="71" selection-start-line="71" selection-end-line="84" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raftCopy/raft/raft.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/wqlin.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raftCopy/raft/raft_leaderElection.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raftCopy/raft/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/diff">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="-236">
+          <caret line="495" column="42" selection-start-line="495" selection-start-column="42" selection-end-line="495" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+          <folding>
+            <element signature="e#14#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/builtin/builtin.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="100" column="4" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/TestBackup2B">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5765">
+          <caret line="3687" column="65" lean-forward="true" selection-start-line="3687" selection-start-column="65" selection-end-line="3687" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/test_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1679">
+          <caret line="639" column="44" selection-start-line="639" selection-start-column="44" selection-end-line="639" selection-end-column="44" />
+          <folding>
+            <element signature="n#!!block;n#TestInitialElection2A#0" />
+            <element signature="e#1044#1121#0" />
+            <element signature="n#!!block;n#TestReElection2A#0" />
+            <element signature="n#!!block;n#TestBasicAgree2B#0" />
+            <element signature="e#2389#2627#0" />
+            <element signature="e#2436#2491#0" />
+            <element signature="e#2560#2624#0" />
+            <element signature="n#!!block;n#TestFailAgree2B#0" />
+            <element signature="n#!!block;n#TestFailNoAgree2B#0" />
+            <element signature="e#4176#4218#0" />
+            <element signature="e#4234#4284#0" />
+            <element signature="e#4365#4415#0" />
+            <element signature="e#4772#4815#0" />
+            <element signature="e#4845#4891#0" />
+            <element signature="n#!!block;n#TestConcurrentStarts2B#0" />
+            <element signature="n#!!block;n#TestRejoin2B#0" />
+            <element signature="n#!!block;n#TestBackup2B#0" />
+            <element signature="n#!!block;n#TestCount2B#0" />
+            <element signature="n#!!block;n#TestPersist12C#0" />
+            <element signature="n#!!block;n#TestPersist32C#0" />
+            <element signature="n#!!block;n#TestFigure82C#0" />
+            <element signature="n#!!block;n#TestUnreliableAgree2C#0" />
+            <element signature="n#!!block;n#TestFigure8Unreliable2C#0" />
+            <element signature="n#!!block;n#internalChurn#0" />
+            <element signature="n#!!block;n#TestReliableChurn2C#0" />
+            <element signature="n#!!block;n#TestUnreliableChurn2C#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/persister.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/raft_leaderElection.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-378">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding>
+            <element signature="e#303#338#0" />
+            <element signature="e#455#586#0" />
+            <element signature="e#805#1461#0" />
+            <element signature="e#1115#1153#0" />
+            <element signature="e#1181#1264#0" />
+            <element signature="e#1194#1242#0" />
+            <element signature="e#1549#2718#0" />
+            <element signature="e#1584#1629#0" />
+            <element signature="e#2007#2064#0" />
+            <element signature="e#2070#2716#0" />
+            <element signature="e#2396#2713#0" />
+            <element signature="e#2598#2648#0" />
+            <element signature="e#2652#2709#0" />
+            <element signature="e#2779#3028#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/common.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/raft.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="62" column="1" lean-forward="true" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
+          <folding>
+            <element signature="e#14#16#0" />
+            <element signature="e#652#669#0" />
+            <element signature="e#985#1018#0" />
+            <element signature="e#1926#1928#0" />
+            <element signature="e#2668#3497#0" />
+            <element signature="e#2783#3454#0" />
+            <element signature="e#2863#2938#0" />
+            <element signature="e#2956#3070#0" />
+            <element signature="e#3232#3263#0" />
+            <element signature="e#3580#6415#0" />
+            <element signature="e#3716#3751#0" />
+            <element signature="e#3800#4728#0" />
+            <element signature="e#4044#4157#0" />
+            <element signature="e#4445#4587#0" />
+            <element signature="e#4733#6413#0" />
+            <element signature="e#4737#4782#0" />
+            <element signature="e#5066#5439#0" />
+            <element signature="e#5676#6356#0" />
+            <element signature="e#5708#5929#0" />
+            <element signature="e#5817#5865#0" />
+            <element signature="e#5869#5924#0" />
+            <element signature="e#5970#6117#0" />
+            <element signature="e#6015#6061#0" />
+            <element signature="e#6065#6112#0" />
+            <element signature="e#6520#6598#0" />
+            <element signature="e#6698#7452#0" />
+            <element signature="e#6812#7217#0" />
+            <element signature="e#6816#6897#0" />
+            <element signature="e#6986#7089#0" />
+            <element signature="e#7026#7085#0" />
+            <element signature="e#7093#7150#0" />
+            <element signature="e#7222#7450#0" />
+            <element signature="e#7226#7281#0" />
+            <element signature="e#7865#10541#0" />
+            <element signature="e#8085#8130#0" />
+            <element signature="e#8206#9748#0" />
+            <element signature="e#8227#8694#0" />
+            <element signature="e#8331#8507#0" />
+            <element signature="e#8390#8502#0" />
+            <element signature="e#8700#9745#0" />
+            <element signature="e#8754#8947#0" />
+            <element signature="e#9172#9574#0" />
+            <element signature="e#9305#9349#0" />
+            <element signature="e#9752#10539#0" />
+            <element signature="e#9903#10523#0" />
+            <element signature="e#9974#10035#0" />
+            <element signature="e#10090#10483#0" />
+            <element signature="e#10148#10329#0" />
+            <element signature="e#10208#10323#0" />
+            <element signature="e#10579#10906#0" />
+            <element signature="e#10630#10904#0" />
+            <element signature="e#10685#10901#0" />
+            <element signature="e#10726#10748#0" />
+            <element signature="e#10785#10897#0" />
+            <element signature="e#10940#11726#0" />
+            <element signature="e#10953#11721#0" />
+            <element signature="e#10961#11718#0" />
+            <element signature="e#11046#11655#0" />
+            <element signature="e#11082#11650#0" />
+            <element signature="e#11155#11644#0" />
+            <element signature="e#11219#11343#0" />
+            <element signature="e#11374#11399#0" />
+            <element signature="e#11728#11730#0" />
+            <element signature="e#12374#13597#0" />
+            <element signature="e#13132#13375#0" />
+            <element signature="e#13520#13551#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

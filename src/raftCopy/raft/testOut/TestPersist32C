@@ -1,0 +1,1335 @@
+2019/05/20 17:00:35 peer 0 : election(310ms) heartbeat(100ms)
+2019/05/20 17:00:35 peer 1 : election(409ms) heartbeat(100ms)
+2019/05/20 17:00:35 peer 2 : election(596ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:36 peer 0 : timeout 
+2019/05/20 17:00:36 peer 0 start election
+2019/05/20 17:00:36 [ Election ] 0 got vote from 1, term = 1
+2019/05/20 17:00:36 [ Election ] 0 got vote from 2, term = 1
+2019/05/20 17:00:36 [Election-->success] 0 LLLock--id 124232352 [waitTime 1558342836]
+2019/05/20 17:00:36 [Election-->success] 0 UULock--id 124232352 [time: 0]
+2019/05/20 17:00:36 peer 0 : win
+2019/05/20 17:00:36 [start command]--Leader 0 log, {120461657 1 1 101}
+2019/05/20 17:00:36 [ peer 2 AppendEntries log]
+2019/05/20 17:00:36 [ peer 1 AppendEntries log]
+2019/05/20 17:00:36 [send msg {1 0 0 0 [{120461657 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:00:36 leader 0 update the commit index 1
+2019/05/20 17:00:36 [send msg {1 0 0 0 [{120461657 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:36 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:36 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:00:36 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:00:36 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:36 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:36 [start command]--Leader 0 log, {160333030 2 1 102}
+2019/05/20 17:00:36 [ peer 1 AppendEntries log]
+2019/05/20 17:00:36 [send msg {1 0 1 1 [{160333030 2 1 102}] 0} success], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:00:36 leader 0 update the commit index 2
+2019/05/20 17:00:36 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:36 peer 1 update commitId 1 get commitId 2
+2019/05/20 17:00:36 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:36 peer 0 : election(460ms) heartbeat(100ms)
+2019/05/20 17:00:37 peer 1 : timeout 
+2019/05/20 17:00:37 peer 1 start election
+2019/05/20 17:00:37 peer 0 : timeout 
+2019/05/20 17:00:37 peer 0 start election
+2019/05/20 17:00:37 [ Election ] 0 got vote from 2, term = 2
+2019/05/20 17:00:37 [Election-->success] 0 LLLock--id 196042276 [waitTime 1558342837]
+2019/05/20 17:00:37 [Election-->success] 0 UULock--id 196042276 [time: 0]
+2019/05/20 17:00:37 peer 0 : win
+2019/05/20 17:00:37 [start command]--Leader 0 log, {123842824 3 2 103}
+2019/05/20 17:00:37 [send msg fail], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:00:37 [ peer 2 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:37 [send msg fail], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:37 [rewrite success]
+2019/05/20 17:00:37 leader 0 update the commit index 3
+2019/05/20 17:00:37 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:37 peer 2 update commitId 1 get commitId 3
+2019/05/20 17:00:37 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:37 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:37 peer 1 : election(472ms) heartbeat(100ms)
+2019/05/20 17:00:37 [start command]--Leader 0 log, {123601580 4 2 104}
+2019/05/20 17:00:37 [ peer 2 AppendEntries log]
+2019/05/20 17:00:37 [send msg {2 0 3 2 [{123601580 4 2 104}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:00:37 leader 0 update the commit index 4
+2019/05/20 17:00:37 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:00:37 [ peer 1 AppendEntries log]
+2019/05/20 17:00:37 [send msg {2 0 2 1 [{123601580 4 2 104} {123842824 3 2 103}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:00:37 peer 2 update commitId 3 get commitId 4
+2019/05/20 17:00:37 peer 1 update commitId 2 get commitId 4
+2019/05/20 17:00:37 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:37 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:00:37 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.6  3   47    4
+PASS
+ok  	raft	1.625s
+2019/05/20 17:00:38 peer 0 : election(460ms) heartbeat(100ms)
+2019/05/20 17:00:38 peer 1 : election(512ms) heartbeat(100ms)
+2019/05/20 17:00:38 peer 2 : election(322ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:38 peer 2 : timeout 
+2019/05/20 17:00:38 peer 2 start election
+2019/05/20 17:00:38 [ Election ] 2 got vote from 1, term = 1
+2019/05/20 17:00:38 [ Election ] 2 got vote from 0, term = 1
+2019/05/20 17:00:38 [Election-->success] 2 LLLock--id 170857761 [waitTime 1558342838]
+2019/05/20 17:00:38 [Election-->success] 2 UULock--id 170857761 [time: 0]
+2019/05/20 17:00:38 peer 2 : win
+2019/05/20 17:00:38 [start command]--Leader 2 log, {178911445 1 1 101}
+2019/05/20 17:00:38 [ peer 1 AppendEntries log]
+2019/05/20 17:00:38 [ peer 0 AppendEntries log]
+2019/05/20 17:00:38 [send msg {1 2 0 0 [{178911445 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:00:38 leader 2 update the commit index 1
+2019/05/20 17:00:38 [send msg {1 2 0 0 [{178911445 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:38 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:38 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:00:38 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:00:38 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:38 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:39 [start command]--Leader 2 log, {180901985 2 1 102}
+2019/05/20 17:00:39 [ peer 0 AppendEntries log]
+2019/05/20 17:00:39 [send msg {1 2 1 1 [{180901985 2 1 102}] 0} success], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:00:39 leader 2 update the commit index 2
+2019/05/20 17:00:39 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:39 peer 0 update commitId 1 get commitId 2
+2019/05/20 17:00:39 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:39 peer 2 : election(309ms) heartbeat(100ms)
+2019/05/20 17:00:39 peer 2 : timeout 
+2019/05/20 17:00:39 peer 2 start election
+2019/05/20 17:00:39 [ Election ] 2 got vote from 1, term = 2
+2019/05/20 17:00:39 [Election-->success] 2 LLLock--id 163402583 [waitTime 1558342839]
+2019/05/20 17:00:39 [Election-->success] 2 UULock--id 163402583 [time: 0]
+2019/05/20 17:00:39 peer 2 : win
+2019/05/20 17:00:39 [start command]--Leader 2 log, {191274531 3 2 103}
+2019/05/20 17:00:39 [send msg fail], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:00:39 [ peer 1 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:39 [send msg fail], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:00:39 [rewrite success]
+2019/05/20 17:00:39 leader 2 update the commit index 3
+2019/05/20 17:00:39 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:39 peer 1 update commitId 1 get commitId 3
+2019/05/20 17:00:39 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:39 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:39 peer 0 : election(472ms) heartbeat(100ms)
+2019/05/20 17:00:39 [start command]--Leader 2 log, {107429210 4 2 104}
+2019/05/20 17:00:39 [ peer 1 AppendEntries log]
+2019/05/20 17:00:39 [send msg {2 2 3 2 [{107429210 4 2 104}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:00:39 leader 2 update the commit index 4
+2019/05/20 17:00:39 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:00:39 peer 0 : timeout 
+2019/05/20 17:00:39 peer 0 start election
+2019/05/20 17:00:39 [ peer 0 AppendEntries log]
+2019/05/20 17:00:39 [send msg {2 2 2 1 [{107429210 4 2 104} {191274531 3 2 103}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:00:39 peer 0 update commitId 2 get commitId 4
+2019/05/20 17:00:39 peer 1 update commitId 3 get commitId 4
+2019/05/20 17:00:39 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:39 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:00:39 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.6  3   47    4
+PASS
+ok  	raft	1.581s
+2019/05/20 17:00:40 peer 0 : election(304ms) heartbeat(100ms)
+2019/05/20 17:00:40 peer 1 : election(309ms) heartbeat(100ms)
+2019/05/20 17:00:40 peer 2 : election(401ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:40 peer 0 : timeout 
+2019/05/20 17:00:40 peer 0 start election
+2019/05/20 17:00:40 [ Election ] 0 got vote from 1, term = 1
+2019/05/20 17:00:40 [ Election ] 0 got vote from 2, term = 1
+2019/05/20 17:00:40 [Election-->success] 0 LLLock--id 143771250 [waitTime 1558342840]
+2019/05/20 17:00:40 [Election-->success] 0 UULock--id 143771250 [time: 0]
+2019/05/20 17:00:40 peer 0 : win
+2019/05/20 17:00:40 [start command]--Leader 0 log, {113307216 1 1 101}
+2019/05/20 17:00:40 [ peer 1 AppendEntries log]
+2019/05/20 17:00:40 [ peer 2 AppendEntries log]
+2019/05/20 17:00:40 [send msg {1 0 0 0 [{113307216 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:00:40 leader 0 update the commit index 1
+2019/05/20 17:00:40 [send msg {1 0 0 0 [{113307216 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:40 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:40 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:00:40 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:00:40 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:40 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:41 [start command]--Leader 0 log, {138647385 2 1 102}
+2019/05/20 17:00:41 [ peer 1 AppendEntries log]
+2019/05/20 17:00:41 [send msg {1 0 1 1 [{138647385 2 1 102}] 0} success], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:00:41 leader 0 update the commit index 2
+2019/05/20 17:00:41 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:41 peer 1 update commitId 1 get commitId 2
+2019/05/20 17:00:41 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:41 peer 0 : election(304ms) heartbeat(100ms)
+2019/05/20 17:00:41 peer 2 : timeout 
+2019/05/20 17:00:41 peer 2 start election
+2019/05/20 17:00:41 peer 1 : timeout 
+2019/05/20 17:00:41 peer 1 start election
+2019/05/20 17:00:41 peer 0 : timeout 
+2019/05/20 17:00:41 peer 0 start election
+2019/05/20 17:00:41 [ Election ] 0 got vote from 2, term = 2
+2019/05/20 17:00:41 [Election-->success] 0 LLLock--id 137045974 [waitTime 1558342841]
+2019/05/20 17:00:41 [Election-->success] 0 UULock--id 137045974 [time: 0]
+2019/05/20 17:00:41 peer 0 : win
+2019/05/20 17:00:41 [start command]--Leader 0 log, {111974405 3 2 103}
+2019/05/20 17:00:41 [send msg fail], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:00:41 [ peer 2 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:41 [send msg fail], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:41 [rewrite success]
+2019/05/20 17:00:41 leader 0 update the commit index 3
+2019/05/20 17:00:41 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:41 peer 2 update commitId 1 get commitId 3
+2019/05/20 17:00:41 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:41 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:41 peer 1 : election(315ms) heartbeat(100ms)
+2019/05/20 17:00:41 [start command]--Leader 0 log, {127876296 4 2 104}
+2019/05/20 17:00:41 [ peer 2 AppendEntries log]
+2019/05/20 17:00:41 [send msg {2 0 3 2 [{127876296 4 2 104}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:00:41 leader 0 update the commit index 4
+2019/05/20 17:00:41 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:00:41 [ peer 1 AppendEntries log]
+2019/05/20 17:00:41 [send msg {2 0 2 1 [{127876296 4 2 104} {111974405 3 2 103}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:00:41 peer 2 update commitId 3 get commitId 4
+2019/05/20 17:00:41 peer 1 update commitId 2 get commitId 4
+2019/05/20 17:00:41 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:00:41 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:41 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.6  3   49    4
+PASS
+ok  	raft	1.565s
+2019/05/20 17:00:42 peer 0 : election(585ms) heartbeat(100ms)
+2019/05/20 17:00:42 peer 1 : election(382ms) heartbeat(100ms)
+2019/05/20 17:00:42 peer 2 : election(556ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:42 peer 1 : timeout 
+2019/05/20 17:00:42 peer 1 start election
+2019/05/20 17:00:42 [ Election ] 1 got vote from 2, term = 1
+2019/05/20 17:00:42 [ Election ] 1 got vote from 0, term = 1
+2019/05/20 17:00:42 [Election-->success] 1 LLLock--id 159249894 [waitTime 1558342842]
+2019/05/20 17:00:42 [Election-->success] 1 UULock--id 159249894 [time: 0]
+2019/05/20 17:00:42 peer 1 : win
+2019/05/20 17:00:42 [start command]--Leader 1 log, {198669605 1 1 101}
+2019/05/20 17:00:42 [ peer 0 AppendEntries log]
+2019/05/20 17:00:42 [ peer 2 AppendEntries log]
+2019/05/20 17:00:42 [send msg {1 1 0 0 [{198669605 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:42 leader 1 update the commit index 1
+2019/05/20 17:00:42 [send msg {1 1 0 0 [{198669605 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:42 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:42 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:00:42 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:00:42 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:42 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:43 [start command]--Leader 1 log, {163312151 2 1 102}
+2019/05/20 17:00:43 [ peer 2 AppendEntries log]
+2019/05/20 17:00:43 [send msg {1 1 1 1 [{163312151 2 1 102}] 0} success], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:00:43 leader 1 update the commit index 2
+2019/05/20 17:00:43 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:43 peer 2 update commitId 1 get commitId 2
+2019/05/20 17:00:43 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:43 peer 1 : election(493ms) heartbeat(100ms)
+2019/05/20 17:00:44 peer 0 : timeout 
+2019/05/20 17:00:44 peer 0 start election
+2019/05/20 17:00:44 peer 1 : timeout 
+2019/05/20 17:00:44 peer 1 start election
+2019/05/20 17:00:44 [ Election ] 1 got vote from 0, term = 2
+2019/05/20 17:00:44 [Election-->success] 1 LLLock--id 156424727 [waitTime 1558342844]
+2019/05/20 17:00:44 [Election-->success] 1 UULock--id 156424727 [time: 0]
+2019/05/20 17:00:44 peer 1 : win
+2019/05/20 17:00:44 [start command]--Leader 1 log, {105350588 3 2 103}
+2019/05/20 17:00:44 [send msg fail], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:00:44 [ peer 0 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:44 [send msg fail], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:44 [rewrite success]
+2019/05/20 17:00:44 leader 1 update the commit index 3
+2019/05/20 17:00:44 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:44 peer 2 : timeout 
+2019/05/20 17:00:44 peer 2 start election
+2019/05/20 17:00:44 peer 0 update commitId 1 get commitId 3
+2019/05/20 17:00:44 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:44 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:44 peer 2 : election(509ms) heartbeat(100ms)
+2019/05/20 17:00:44 [start command]--Leader 1 log, {180544937 4 2 104}
+2019/05/20 17:00:44 [ peer 2 AppendEntries log]
+2019/05/20 17:00:44 [ peer 0 AppendEntries log]
+2019/05/20 17:00:44 [send msg {2 1 2 1 [{180544937 4 2 104} {105350588 3 2 103}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:00:44 leader 1 update the commit index 4
+2019/05/20 17:00:44 [send msg {2 1 3 2 [{180544937 4 2 104}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:00:44 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:00:44 peer 2 update commitId 2 get commitId 4
+2019/05/20 17:00:44 peer 0 update commitId 3 get commitId 4
+2019/05/20 17:00:44 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:00:44 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:44 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+  ... Passed --   1.8  3   53    4
+PASS
+ok  	raft	1.849s
+2019/05/20 17:00:44 peer 0 : election(316ms) heartbeat(100ms)
+2019/05/20 17:00:44 peer 1 : election(441ms) heartbeat(100ms)
+2019/05/20 17:00:44 peer 2 : election(500ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:45 peer 0 : timeout 
+2019/05/20 17:00:45 peer 0 start election
+2019/05/20 17:00:45 [ Election ] 0 got vote from 2, term = 1
+2019/05/20 17:00:45 [ Election ] 0 got vote from 1, term = 1
+2019/05/20 17:00:45 [Election-->success] 0 LLLock--id 171959586 [waitTime 1558342845]
+2019/05/20 17:00:45 [Election-->success] 0 UULock--id 171959586 [time: 0]
+2019/05/20 17:00:45 peer 0 : win
+2019/05/20 17:00:45 [start command]--Leader 0 log, {166546559 1 1 101}
+2019/05/20 17:00:45 [ peer 2 AppendEntries log]
+2019/05/20 17:00:45 [ peer 1 AppendEntries log]
+2019/05/20 17:00:45 [send msg {1 0 0 0 [{166546559 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:45 leader 0 update the commit index 1
+2019/05/20 17:00:45 [send msg {1 0 0 0 [{166546559 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:00:45 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:45 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:00:45 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:00:45 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:45 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:45 [start command]--Leader 0 log, {125969967 2 1 102}
+2019/05/20 17:00:45 [ peer 1 AppendEntries log]
+2019/05/20 17:00:45 [send msg {1 0 1 1 [{125969967 2 1 102}] 0} success], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:00:45 leader 0 update the commit index 2
+2019/05/20 17:00:45 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:45 peer 1 update commitId 1 get commitId 2
+2019/05/20 17:00:45 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:45 peer 0 : election(348ms) heartbeat(100ms)
+2019/05/20 17:00:46 leaderID 0 peer 2 index 2 crash
+2019/05/20 17:00:46 peer 0 : timeout 
+2019/05/20 17:00:46 peer 0 start election
+2019/05/20 17:00:46 [ Election ] 0 got vote from 2, term = 2
+2019/05/20 17:00:46 [Election-->success] 0 LLLock--id 152905709 [waitTime 1558342846]
+2019/05/20 17:00:46 [Election-->success] 0 UULock--id 152905709 [time: 0]
+2019/05/20 17:00:46 peer 0 : win
+2019/05/20 17:00:46 [start command]--Leader 0 log, {115793720 3 2 103}
+2019/05/20 17:00:46 [send msg fail], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:00:46 [ peer 2 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:46 [send msg fail], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:46 [rewrite success]
+2019/05/20 17:00:46 leader 0 update the commit index 3
+2019/05/20 17:00:46 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:46 peer 1 : timeout 
+2019/05/20 17:00:46 peer 1 start election
+2019/05/20 17:00:46 peer 2 update commitId 1 get commitId 3
+2019/05/20 17:00:46 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:46 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:46 peer 1 : election(415ms) heartbeat(100ms)
+2019/05/20 17:00:46 [start command]--Leader 0 log, {136362117 4 2 104}
+2019/05/20 17:00:46 [ peer 2 AppendEntries log]
+2019/05/20 17:00:46 [send msg {2 0 3 2 [{136362117 4 2 104}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:00:46 leader 0 update the commit index 4
+2019/05/20 17:00:46 [ peer 1 AppendEntries log]
+2019/05/20 17:00:46 [send msg {2 0 2 1 [{136362117 4 2 104} {115793720 3 2 103}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:00:46 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:00:46 peer 2 update commitId 3 get commitId 4
+2019/05/20 17:00:46 peer 1 update commitId 2 get commitId 4
+2019/05/20 17:00:46 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:00:46 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:46 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.6  3   50    4
+PASS
+ok  	raft	1.639s
+2019/05/20 17:00:46 peer 0 : election(425ms) heartbeat(100ms)
+2019/05/20 17:00:46 peer 1 : election(538ms) heartbeat(100ms)
+2019/05/20 17:00:46 peer 2 : election(472ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:47 peer 0 : timeout 
+2019/05/20 17:00:47 peer 0 start election
+2019/05/20 17:00:47 [ Election ] 0 got vote from 1, term = 1
+2019/05/20 17:00:47 [ Election ] 0 got vote from 2, term = 1
+2019/05/20 17:00:47 [Election-->success] 0 LLLock--id 174653958 [waitTime 1558342847]
+2019/05/20 17:00:47 [Election-->success] 0 UULock--id 174653958 [time: 0]
+2019/05/20 17:00:47 peer 0 : win
+2019/05/20 17:00:47 [start command]--Leader 0 log, {153468474 1 1 101}
+2019/05/20 17:00:47 [ peer 2 AppendEntries log]
+2019/05/20 17:00:47 [ peer 1 AppendEntries log]
+2019/05/20 17:00:47 [send msg {1 0 0 0 [{153468474 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:47 leader 0 update the commit index 1
+2019/05/20 17:00:47 [send msg {1 0 0 0 [{153468474 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:00:47 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:47 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:00:47 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:00:47 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:47 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:48 [start command]--Leader 0 log, {118379020 2 1 102}
+2019/05/20 17:00:48 [ peer 1 AppendEntries log]
+2019/05/20 17:00:48 [send msg {1 0 1 1 [{118379020 2 1 102}] 0} success], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:00:48 leader 0 update the commit index 2
+2019/05/20 17:00:48 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:48 peer 1 update commitId 1 get commitId 2
+2019/05/20 17:00:48 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:48 peer 0 : election(374ms) heartbeat(100ms)
+2019/05/20 17:00:48 peer 2 : timeout 
+2019/05/20 17:00:48 peer 2 start election
+2019/05/20 17:00:48 peer 0 : timeout 
+2019/05/20 17:00:48 peer 0 start election
+2019/05/20 17:00:48 [ Election ] 0 got vote from 2, term = 2
+2019/05/20 17:00:48 [Election-->success] 0 LLLock--id 130527242 [waitTime 1558342848]
+2019/05/20 17:00:48 [Election-->success] 0 UULock--id 130527242 [time: 0]
+2019/05/20 17:00:48 peer 0 : win
+2019/05/20 17:00:48 [start command]--Leader 0 log, {119886064 3 2 103}
+2019/05/20 17:00:48 [send msg fail], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:00:48 [ peer 2 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:48 [send msg fail], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:48 [rewrite success]
+2019/05/20 17:00:48 leader 0 update the commit index 3
+2019/05/20 17:00:48 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:48 peer 2 update commitId 1 get commitId 3
+2019/05/20 17:00:48 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:48 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:48 peer 1 : election(381ms) heartbeat(100ms)
+2019/05/20 17:00:48 [start command]--Leader 0 log, {136692316 4 2 104}
+2019/05/20 17:00:48 [ peer 2 AppendEntries log]
+2019/05/20 17:00:48 [send msg {2 0 3 2 [{136692316 4 2 104}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:00:48 leader 0 update the commit index 4
+2019/05/20 17:00:48 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:00:48 [ peer 1 AppendEntries log]
+2019/05/20 17:00:48 [send msg {2 0 2 1 [{136692316 4 2 104} {119886064 3 2 103}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:00:48 peer 1 : timeout 
+2019/05/20 17:00:48 peer 1 start election
+2019/05/20 17:00:48 peer 1 update commitId 2 get commitId 4
+2019/05/20 17:00:48 peer 2 update commitId 3 get commitId 4
+2019/05/20 17:00:48 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:00:48 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:48 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.8  3   51    4
+PASS
+ok  	raft	1.765s
+2019/05/20 17:00:49 peer 0 : election(416ms) heartbeat(100ms)
+2019/05/20 17:00:49 peer 1 : election(320ms) heartbeat(100ms)
+2019/05/20 17:00:49 peer 2 : election(466ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:49 peer 1 : timeout 
+2019/05/20 17:00:49 peer 1 start election
+2019/05/20 17:00:49 [ Election ] 1 got vote from 0, term = 1
+2019/05/20 17:00:49 [ Election ] 1 got vote from 2, term = 1
+2019/05/20 17:00:49 [Election-->success] 1 LLLock--id 110897881 [waitTime 1558342849]
+2019/05/20 17:00:49 [Election-->success] 1 UULock--id 110897881 [time: 0]
+2019/05/20 17:00:49 peer 1 : win
+2019/05/20 17:00:49 [start command]--Leader 1 log, {124548745 1 1 101}
+2019/05/20 17:00:49 [ peer 0 AppendEntries log]
+2019/05/20 17:00:49 [ peer 2 AppendEntries log]
+2019/05/20 17:00:49 [send msg {1 1 0 0 [{124548745 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:49 leader 1 update the commit index 1
+2019/05/20 17:00:49 [send msg {1 1 0 0 [{124548745 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:49 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:49 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:00:49 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:00:49 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:49 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:50 [start command]--Leader 1 log, {187216472 2 1 102}
+2019/05/20 17:00:50 [ peer 2 AppendEntries log]
+2019/05/20 17:00:50 [send msg {1 1 1 1 [{187216472 2 1 102}] 0} success], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:00:50 leader 1 update the commit index 2
+2019/05/20 17:00:50 peer 2 update commitId 1 get commitId 2
+2019/05/20 17:00:50 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:50 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:50 peer 1 : election(534ms) heartbeat(100ms)
+2019/05/20 17:00:50 peer 0 : timeout 
+2019/05/20 17:00:50 peer 0 start election
+2019/05/20 17:00:50 peer 2 : timeout 
+2019/05/20 17:00:50 peer 2 start election
+2019/05/20 17:00:50 peer 1 : timeout 
+2019/05/20 17:00:50 peer 1 start election
+2019/05/20 17:00:50 [ Election ] 1 got vote from 0, term = 2
+2019/05/20 17:00:50 [Election-->success] 1 LLLock--id 139304232 [waitTime 1558342850]
+2019/05/20 17:00:50 [Election-->success] 1 UULock--id 139304232 [time: 0]
+2019/05/20 17:00:50 peer 1 : win
+2019/05/20 17:00:50 [start command]--Leader 1 log, {156758883 3 2 103}
+2019/05/20 17:00:50 [send msg fail], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:00:50 [ peer 0 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:50 [send msg fail], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:50 [rewrite success]
+2019/05/20 17:00:50 leader 1 update the commit index 3
+2019/05/20 17:00:50 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:50 peer 0 update commitId 1 get commitId 3
+2019/05/20 17:00:50 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:50 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:50 peer 2 : election(464ms) heartbeat(100ms)
+2019/05/20 17:00:50 [start command]--Leader 1 log, {112018702 4 2 104}
+2019/05/20 17:00:50 [ peer 0 AppendEntries log]
+2019/05/20 17:00:50 [send msg {2 1 3 2 [{112018702 4 2 104}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:00:50 leader 1 update the commit index 4
+2019/05/20 17:00:50 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:00:50 [ peer 2 AppendEntries log]
+2019/05/20 17:00:50 [send msg {2 1 2 1 [{112018702 4 2 104} {156758883 3 2 103}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:00:50 peer 0 update commitId 3 get commitId 4
+2019/05/20 17:00:50 peer 2 update commitId 2 get commitId 4
+2019/05/20 17:00:50 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:50 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:00:50 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+  ... Passed --   1.7  3   51    4
+PASS
+ok  	raft	1.708s
+2019/05/20 17:00:51 peer 0 : election(591ms) heartbeat(100ms)
+2019/05/20 17:00:51 peer 1 : election(429ms) heartbeat(100ms)
+2019/05/20 17:00:51 peer 2 : election(498ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:52 peer 1 : timeout 
+2019/05/20 17:00:52 peer 1 start election
+2019/05/20 17:00:52 [ Election ] 1 got vote from 0, term = 1
+2019/05/20 17:00:52 [ Election ] 1 got vote from 2, term = 1
+2019/05/20 17:00:52 [Election-->success] 1 LLLock--id 183443003 [waitTime 1558342852]
+2019/05/20 17:00:52 [Election-->success] 1 UULock--id 183443003 [time: 0]
+2019/05/20 17:00:52 peer 1 : win
+2019/05/20 17:00:52 [start command]--Leader 1 log, {113084326 1 1 101}
+2019/05/20 17:00:52 [ peer 0 AppendEntries log]
+2019/05/20 17:00:52 [ peer 2 AppendEntries log]
+2019/05/20 17:00:52 [send msg {1 1 0 0 [{113084326 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:52 leader 1 update the commit index 1
+2019/05/20 17:00:52 [send msg {1 1 0 0 [{113084326 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:52 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:52 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:00:52 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:00:52 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:52 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:52 [start command]--Leader 1 log, {140591234 2 1 102}
+2019/05/20 17:00:52 [ peer 2 AppendEntries log]
+2019/05/20 17:00:52 [send msg {1 1 1 1 [{140591234 2 1 102}] 0} success], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:00:52 leader 1 update the commit index 2
+2019/05/20 17:00:52 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:52 peer 2 update commitId 1 get commitId 2
+2019/05/20 17:00:52 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:52 peer 1 : election(578ms) heartbeat(100ms)
+2019/05/20 17:00:53 peer 0 : timeout 
+2019/05/20 17:00:53 peer 0 start election
+2019/05/20 17:00:53 peer 2 : timeout 
+2019/05/20 17:00:53 peer 2 start election
+2019/05/20 17:00:53 peer 1 : timeout 
+2019/05/20 17:00:53 peer 1 start election
+2019/05/20 17:00:53 [ Election ] 1 got vote from 0, term = 2
+2019/05/20 17:00:53 [Election-->success] 1 LLLock--id 195433726 [waitTime 1558342853]
+2019/05/20 17:00:53 [Election-->success] 1 UULock--id 195433726 [time: 0]
+2019/05/20 17:00:53 peer 1 : win
+2019/05/20 17:00:53 [start command]--Leader 1 log, {130596640 3 2 103}
+2019/05/20 17:00:53 [send msg fail], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:00:53 [ peer 0 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:53 [send msg fail], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:53 [rewrite success]
+2019/05/20 17:00:53 leader 1 update the commit index 3
+2019/05/20 17:00:53 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:53 peer 0 update commitId 1 get commitId 3
+2019/05/20 17:00:53 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:53 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:53 peer 2 : election(549ms) heartbeat(100ms)
+2019/05/20 17:00:53 [start command]--Leader 1 log, {140936045 4 2 104}
+2019/05/20 17:00:53 [ peer 2 AppendEntries log]
+2019/05/20 17:00:53 [ peer 0 AppendEntries log]
+2019/05/20 17:00:53 [send msg {2 1 2 1 [{140936045 4 2 104} {130596640 3 2 103}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:00:53 leader 1 update the commit index 4
+2019/05/20 17:00:53 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:00:53 [send msg {2 1 3 2 [{140936045 4 2 104}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:00:53 peer 0 update commitId 3 get commitId 4
+2019/05/20 17:00:53 peer 2 update commitId 2 get commitId 4
+2019/05/20 17:00:53 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:00:53 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:53 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+  ... Passed --   1.8  3   51    4
+PASS
+ok  	raft	1.855s
+2019/05/20 17:00:54 peer 0 : election(590ms) heartbeat(100ms)
+2019/05/20 17:00:54 peer 1 : election(362ms) heartbeat(100ms)
+2019/05/20 17:00:54 peer 2 : election(371ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:54 peer 1 : timeout 
+2019/05/20 17:00:54 peer 1 start election
+2019/05/20 17:00:54 [ Election ] 1 got vote from 2, term = 1
+2019/05/20 17:00:54 [ Election ] 1 got vote from 0, term = 1
+2019/05/20 17:00:54 [Election-->success] 1 LLLock--id 139681827 [waitTime 1558342854]
+2019/05/20 17:00:54 [Election-->success] 1 UULock--id 139681827 [time: 0]
+2019/05/20 17:00:54 peer 1 : win
+2019/05/20 17:00:54 [start command]--Leader 1 log, {166481095 1 1 101}
+2019/05/20 17:00:54 [ peer 0 AppendEntries log]
+2019/05/20 17:00:54 [ peer 2 AppendEntries log]
+2019/05/20 17:00:54 [send msg {1 1 0 0 [{166481095 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:54 leader 1 update the commit index 1
+2019/05/20 17:00:54 [send msg {1 1 0 0 [{166481095 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:54 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:54 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:00:54 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:00:54 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:54 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:55 [start command]--Leader 1 log, {197680807 2 1 102}
+2019/05/20 17:00:55 [ peer 2 AppendEntries log]
+2019/05/20 17:00:55 [send msg {1 1 1 1 [{197680807 2 1 102}] 0} success], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:00:55 leader 1 update the commit index 2
+2019/05/20 17:00:55 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:55 peer 2 update commitId 1 get commitId 2
+2019/05/20 17:00:55 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:55 peer 1 : election(469ms) heartbeat(100ms)
+2019/05/20 17:00:55 peer 2 : timeout 
+2019/05/20 17:00:55 peer 2 start election
+2019/05/20 17:00:55 peer 0 : timeout 
+2019/05/20 17:00:55 peer 0 start election
+2019/05/20 17:00:55 peer 1 : timeout 
+2019/05/20 17:00:55 peer 1 start election
+2019/05/20 17:00:55 [ Election ] 1 got vote from 0, term = 2
+2019/05/20 17:00:55 [Election-->success] 1 LLLock--id 137643283 [waitTime 1558342855]
+2019/05/20 17:00:55 [Election-->success] 1 UULock--id 137643283 [time: 0]
+2019/05/20 17:00:55 peer 1 : win
+2019/05/20 17:00:55 [start command]--Leader 1 log, {101483894 3 2 103}
+2019/05/20 17:00:55 [send msg fail], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:00:55 [ peer 0 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:55 [send msg fail], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:55 [rewrite success]
+2019/05/20 17:00:55 leader 1 update the commit index 3
+2019/05/20 17:00:55 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:55 peer 0 update commitId 1 get commitId 3
+2019/05/20 17:00:55 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:55 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:55 peer 2 : election(503ms) heartbeat(100ms)
+2019/05/20 17:00:55 [start command]--Leader 1 log, {196182631 4 2 104}
+2019/05/20 17:00:55 [ peer 0 AppendEntries log]
+2019/05/20 17:00:55 [send msg {2 1 3 2 [{196182631 4 2 104}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:00:55 leader 1 update the commit index 4
+2019/05/20 17:00:55 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:00:55 [ peer 2 AppendEntries log]
+2019/05/20 17:00:55 [send msg {2 1 2 1 [{196182631 4 2 104} {101483894 3 2 103}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:00:56 peer 0 update commitId 3 get commitId 4
+2019/05/20 17:00:56 peer 2 update commitId 2 get commitId 4
+2019/05/20 17:00:56 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:56 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:00:56 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+  ... Passed --   1.8  3   53    4
+PASS
+ok  	raft	1.800s
+2019/05/20 17:00:56 peer 0 : election(582ms) heartbeat(100ms)
+2019/05/20 17:00:56 peer 1 : election(535ms) heartbeat(100ms)
+2019/05/20 17:00:56 peer 2 : election(538ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:57 peer 1 : timeout 
+2019/05/20 17:00:57 peer 1 start election
+2019/05/20 17:00:57 [ Election ] 1 got vote from 2, term = 1
+2019/05/20 17:00:57 [ Election ] 1 got vote from 0, term = 1
+2019/05/20 17:00:57 [Election-->success] 1 LLLock--id 150102743 [waitTime 1558342857]
+2019/05/20 17:00:57 [Election-->success] 1 UULock--id 150102743 [time: 0]
+2019/05/20 17:00:57 peer 1 : win
+2019/05/20 17:00:57 [start command]--Leader 1 log, {177358778 1 1 101}
+2019/05/20 17:00:57 [ peer 2 AppendEntries log]
+2019/05/20 17:00:57 [ peer 0 AppendEntries log]
+2019/05/20 17:00:57 [send msg {1 1 0 0 [{177358778 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:00:57 leader 1 update the commit index 1
+2019/05/20 17:00:57 [send msg {1 1 0 0 [{177358778 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:57 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:00:57 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:00:57 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:00:57 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:57 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:57 [start command]--Leader 1 log, {108522712 2 1 102}
+2019/05/20 17:00:57 [ peer 2 AppendEntries log]
+2019/05/20 17:00:57 [send msg {1 1 1 1 [{108522712 2 1 102}] 0} success], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:00:57 leader 1 update the commit index 2
+2019/05/20 17:00:57 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:00:58 peer 2 update commitId 1 get commitId 2
+2019/05/20 17:00:58 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:00:58 peer 1 : election(499ms) heartbeat(100ms)
+2019/05/20 17:00:58 leaderID 1 peer 0 index 2 crash
+2019/05/20 17:00:58 peer 0 : timeout 
+2019/05/20 17:00:58 peer 0 start election
+2019/05/20 17:00:58 peer 1 : timeout 
+2019/05/20 17:00:58 peer 1 start election
+2019/05/20 17:00:58 [ Election ] 1 got vote from 0, term = 2
+2019/05/20 17:00:58 [Election-->success] 1 LLLock--id 109229016 [waitTime 1558342858]
+2019/05/20 17:00:58 [Election-->success] 1 UULock--id 109229016 [time: 0]
+2019/05/20 17:00:58 peer 1 : win
+2019/05/20 17:00:58 [start command]--Leader 1 log, {193556151 3 2 103}
+2019/05/20 17:00:58 [send msg fail], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:00:58 [ peer 0 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:00:58 [send msg fail], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:58 [rewrite success]
+2019/05/20 17:00:58 leader 1 update the commit index 3
+2019/05/20 17:00:58 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:00:58 peer 2 : timeout 
+2019/05/20 17:00:58 peer 2 start election
+2019/05/20 17:00:58 peer 0 update commitId 1 get commitId 3
+2019/05/20 17:00:58 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:00:58 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:00:58 peer 2 : election(441ms) heartbeat(100ms)
+2019/05/20 17:00:58 [start command]--Leader 1 log, {195996102 4 2 104}
+2019/05/20 17:00:58 [ peer 2 AppendEntries log]
+2019/05/20 17:00:58 [ peer 0 AppendEntries log]
+2019/05/20 17:00:58 [send msg {2 1 2 1 [{195996102 4 2 104} {193556151 3 2 103}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:00:58 leader 1 update the commit index 4
+2019/05/20 17:00:58 [send msg {2 1 3 2 [{195996102 4 2 104}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:00:58 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:00:58 peer 2 update commitId 2 get commitId 4
+2019/05/20 17:00:58 peer 0 update commitId 3 get commitId 4
+2019/05/20 17:00:58 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:00:58 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:00:58 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+  ... Passed --   2.0  3   54    4
+PASS
+ok  	raft	1.996s
+2019/05/20 17:00:59 peer 0 : election(432ms) heartbeat(100ms)
+2019/05/20 17:00:59 peer 1 : election(505ms) heartbeat(100ms)
+2019/05/20 17:00:59 peer 2 : election(405ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:00:59 peer 2 : timeout 
+2019/05/20 17:00:59 peer 2 start election
+2019/05/20 17:00:59 [ Election ] 2 got vote from 0, term = 1
+2019/05/20 17:00:59 [ Election ] 2 got vote from 1, term = 1
+2019/05/20 17:00:59 [Election-->success] 2 LLLock--id 199272745 [waitTime 1558342859]
+2019/05/20 17:00:59 [Election-->success] 2 UULock--id 199272745 [time: 0]
+2019/05/20 17:00:59 peer 2 : win
+2019/05/20 17:00:59 [start command]--Leader 2 log, {121219982 1 1 101}
+2019/05/20 17:00:59 [ peer 1 AppendEntries log]
+2019/05/20 17:00:59 [ peer 0 AppendEntries log]
+2019/05/20 17:00:59 [send msg {1 2 0 0 [{121219982 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:00:59 leader 2 update the commit index 1
+2019/05/20 17:00:59 [send msg {1 2 0 0 [{121219982 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:00:59 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:00:59 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:00:59 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:00:59 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:00:59 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:00 [start command]--Leader 2 log, {183034490 2 1 102}
+2019/05/20 17:01:00 [ peer 0 AppendEntries log]
+2019/05/20 17:01:00 [send msg {1 2 1 1 [{183034490 2 1 102}] 0} success], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:01:00 leader 2 update the commit index 2
+2019/05/20 17:01:00 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:00 peer 0 update commitId 1 get commitId 2
+2019/05/20 17:01:00 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:00 peer 2 : election(547ms) heartbeat(100ms)
+2019/05/20 17:01:00 peer 1 : timeout 
+2019/05/20 17:01:00 peer 1 start election
+2019/05/20 17:01:00 peer 0 : timeout 
+2019/05/20 17:01:00 peer 0 start election
+2019/05/20 17:01:00 peer 2 : timeout 
+2019/05/20 17:01:00 peer 2 start election
+2019/05/20 17:01:00 [ Election ] 2 got vote from 1, term = 2
+2019/05/20 17:01:00 [Election-->success] 2 LLLock--id 136612857 [waitTime 1558342860]
+2019/05/20 17:01:00 [Election-->success] 2 UULock--id 136612857 [time: 0]
+2019/05/20 17:01:00 peer 2 : win
+2019/05/20 17:01:00 [start command]--Leader 2 log, {146460722 3 2 103}
+2019/05/20 17:01:00 [send msg fail], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:01:00 [ peer 1 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:00 [send msg fail], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:00 [rewrite success]
+2019/05/20 17:01:00 leader 2 update the commit index 3
+2019/05/20 17:01:00 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:01 peer 1 update commitId 1 get commitId 3
+2019/05/20 17:01:01 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:01 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:01 peer 0 : election(526ms) heartbeat(100ms)
+2019/05/20 17:01:01 [start command]--Leader 2 log, {164818532 4 2 104}
+2019/05/20 17:01:01 [ peer 1 AppendEntries log]
+2019/05/20 17:01:01 [ peer 0 AppendEntries log]
+2019/05/20 17:01:01 [send msg {2 2 3 2 [{164818532 4 2 104}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:01:01 leader 2 update the commit index 4
+2019/05/20 17:01:01 [send msg {2 2 2 1 [{164818532 4 2 104} {146460722 3 2 103}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:01:01 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:01:01 peer 1 update commitId 3 get commitId 4
+2019/05/20 17:01:01 peer 0 update commitId 2 get commitId 4
+2019/05/20 17:01:01 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:01:01 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:01 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+  ... Passed --   1.8  3   51    4
+PASS
+ok  	raft	1.795s
+2019/05/20 17:01:01 peer 0 : election(327ms) heartbeat(100ms)
+2019/05/20 17:01:01 peer 1 : election(576ms) heartbeat(100ms)
+2019/05/20 17:01:01 peer 2 : election(578ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:01:02 peer 0 : timeout 
+2019/05/20 17:01:02 peer 0 start election
+2019/05/20 17:01:02 [ Election ] 0 got vote from 1, term = 1
+2019/05/20 17:01:02 [ Election ] 0 got vote from 2, term = 1
+2019/05/20 17:01:02 [Election-->success] 0 LLLock--id 125411267 [waitTime 1558342862]
+2019/05/20 17:01:02 [Election-->success] 0 UULock--id 125411267 [time: 0]
+2019/05/20 17:01:02 peer 0 : win
+2019/05/20 17:01:02 [start command]--Leader 0 log, {110136160 1 1 101}
+2019/05/20 17:01:02 [ peer 1 AppendEntries log]
+2019/05/20 17:01:02 [ peer 2 AppendEntries log]
+2019/05/20 17:01:02 [send msg {1 0 0 0 [{110136160 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:02 leader 0 update the commit index 1
+2019/05/20 17:01:02 [send msg {1 0 0 0 [{110136160 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:02 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:01:02 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:01:02 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:01:02 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:01:02 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:02 [start command]--Leader 0 log, {170701590 2 1 102}
+2019/05/20 17:01:02 [ peer 1 AppendEntries log]
+2019/05/20 17:01:02 [send msg {1 0 1 1 [{170701590 2 1 102}] 0} success], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:01:02 leader 0 update the commit index 2
+2019/05/20 17:01:02 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:02 peer 1 update commitId 1 get commitId 2
+2019/05/20 17:01:02 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:02 peer 0 : election(463ms) heartbeat(100ms)
+2019/05/20 17:01:03 peer 2 : timeout 
+2019/05/20 17:01:03 peer 2 start election
+2019/05/20 17:01:03 peer 0 : timeout 
+2019/05/20 17:01:03 peer 0 start election
+2019/05/20 17:01:03 [ Election ] 0 got vote from 2, term = 2
+2019/05/20 17:01:03 [Election-->success] 0 LLLock--id 174376769 [waitTime 1558342863]
+2019/05/20 17:01:03 [Election-->success] 0 UULock--id 174376769 [time: 0]
+2019/05/20 17:01:03 peer 0 : win
+2019/05/20 17:01:03 [start command]--Leader 0 log, {125850474 3 2 103}
+2019/05/20 17:01:03 [send msg fail], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:01:03 [ peer 2 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:03 [send msg fail], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:03 [rewrite success]
+2019/05/20 17:01:03 leader 0 update the commit index 3
+2019/05/20 17:01:03 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:03 peer 1 : timeout 
+2019/05/20 17:01:03 peer 1 start election
+2019/05/20 17:01:03 peer 2 update commitId 1 get commitId 3
+2019/05/20 17:01:03 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:03 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:03 peer 1 : election(364ms) heartbeat(100ms)
+2019/05/20 17:01:03 [start command]--Leader 0 log, {136210100 4 2 104}
+2019/05/20 17:01:03 [ peer 2 AppendEntries log]
+2019/05/20 17:01:03 [ peer 1 AppendEntries log]
+2019/05/20 17:01:03 [send msg {2 0 3 2 [{136210100 4 2 104}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:01:03 leader 0 update the commit index 4
+2019/05/20 17:01:03 [send msg {2 0 2 1 [{136210100 4 2 104} {125850474 3 2 103}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:01:03 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:01:03 peer 2 update commitId 3 get commitId 4
+2019/05/20 17:01:03 peer 1 update commitId 2 get commitId 4
+2019/05/20 17:01:03 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:01:03 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:03 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.7  3   51    4
+PASS
+ok  	raft	1.753s
+2019/05/20 17:01:04 peer 0 : election(472ms) heartbeat(100ms)
+2019/05/20 17:01:04 peer 1 : election(398ms) heartbeat(100ms)
+2019/05/20 17:01:04 peer 2 : election(546ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:01:04 peer 1 : timeout 
+2019/05/20 17:01:04 peer 1 start election
+2019/05/20 17:01:04 [ Election ] 1 got vote from 0, term = 1
+2019/05/20 17:01:04 [Election-->success] 1 LLLock--id 158978585 [waitTime 1558342864]
+2019/05/20 17:01:04 [Election-->success] 1 UULock--id 158978585 [time: 0]
+2019/05/20 17:01:04 peer 1 : win
+2019/05/20 17:01:04 [ Election ] 1 got vote from 2, term = 1
+2019/05/20 17:01:04 [start command]--Leader 1 log, {130495125 1 1 101}
+2019/05/20 17:01:04 [ peer 2 AppendEntries log]
+2019/05/20 17:01:04 [ peer 0 AppendEntries log]
+2019/05/20 17:01:04 [send msg {1 1 0 0 [{130495125 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:04 leader 1 update the commit index 1
+2019/05/20 17:01:04 [send msg {1 1 0 0 [{130495125 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:01:04 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:04 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:01:04 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:01:04 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:01:04 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:01:05 [start command]--Leader 1 log, {177696195 2 1 102}
+2019/05/20 17:01:05 [ peer 2 AppendEntries log]
+2019/05/20 17:01:05 [send msg {1 1 1 1 [{177696195 2 1 102}] 0} success], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:01:05 leader 1 update the commit index 2
+2019/05/20 17:01:05 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:05 peer 2 update commitId 1 get commitId 2
+2019/05/20 17:01:05 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:05 peer 1 : election(571ms) heartbeat(100ms)
+2019/05/20 17:01:05 peer 0 : timeout 
+2019/05/20 17:01:05 peer 0 start election
+2019/05/20 17:01:05 peer 2 : timeout 
+2019/05/20 17:01:05 peer 2 start election
+2019/05/20 17:01:05 peer 1 : timeout 
+2019/05/20 17:01:05 peer 1 start election
+2019/05/20 17:01:05 [ Election ] 1 got vote from 0, term = 2
+2019/05/20 17:01:05 [Election-->success] 1 LLLock--id 125204369 [waitTime 1558342865]
+2019/05/20 17:01:05 [Election-->success] 1 UULock--id 125204369 [time: 0]
+2019/05/20 17:01:05 peer 1 : win
+2019/05/20 17:01:05 [start command]--Leader 1 log, {134608728 3 2 103}
+2019/05/20 17:01:05 [send msg fail], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:01:05 [ peer 0 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:05 [send msg fail], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:01:05 [rewrite success]
+2019/05/20 17:01:05 leader 1 update the commit index 3
+2019/05/20 17:01:05 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:05 peer 0 update commitId 1 get commitId 3
+2019/05/20 17:01:05 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:05 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:05 peer 2 : election(447ms) heartbeat(100ms)
+2019/05/20 17:01:05 [start command]--Leader 1 log, {182744143 4 2 104}
+2019/05/20 17:01:05 [ peer 0 AppendEntries log]
+2019/05/20 17:01:05 [send msg {2 1 3 2 [{182744143 4 2 104}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:01:05 leader 1 update the commit index 4
+2019/05/20 17:01:05 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:01:05 [ peer 2 AppendEntries log]
+2019/05/20 17:01:05 [send msg {2 1 2 1 [{182744143 4 2 104} {134608728 3 2 103}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:01:06 peer 2 update commitId 2 get commitId 4
+2019/05/20 17:01:06 peer 0 update commitId 3 get commitId 4
+2019/05/20 17:01:06 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:01:06 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:06 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+  ... Passed --   1.9  3   55    4
+PASS
+ok  	raft	1.932s
+2019/05/20 17:01:06 peer 0 : election(466ms) heartbeat(100ms)
+2019/05/20 17:01:06 peer 1 : election(538ms) heartbeat(100ms)
+2019/05/20 17:01:06 peer 2 : election(484ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:01:07 peer 0 : timeout 
+2019/05/20 17:01:07 peer 0 start election
+2019/05/20 17:01:07 [ Election ] 0 got vote from 1, term = 1
+2019/05/20 17:01:07 [ Election ] 0 got vote from 2, term = 1
+2019/05/20 17:01:07 [Election-->success] 0 LLLock--id 102404457 [waitTime 1558342867]
+2019/05/20 17:01:07 [Election-->success] 0 UULock--id 102404457 [time: 0]
+2019/05/20 17:01:07 peer 0 : win
+2019/05/20 17:01:07 [start command]--Leader 0 log, {135751648 1 1 101}
+2019/05/20 17:01:07 [ peer 1 AppendEntries log]
+2019/05/20 17:01:07 [ peer 2 AppendEntries log]
+2019/05/20 17:01:07 [send msg {1 0 0 0 [{135751648 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:07 leader 0 update the commit index 1
+2019/05/20 17:01:07 [send msg {1 0 0 0 [{135751648 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:07 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:01:07 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:01:07 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:01:07 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:07 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:01:07 [start command]--Leader 0 log, {173512682 2 1 102}
+2019/05/20 17:01:07 [ peer 1 AppendEntries log]
+2019/05/20 17:01:07 [send msg {1 0 1 1 [{173512682 2 1 102}] 0} success], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:01:07 leader 0 update the commit index 2
+2019/05/20 17:01:07 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:07 peer 1 update commitId 1 get commitId 2
+2019/05/20 17:01:07 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:07 peer 0 : election(315ms) heartbeat(100ms)
+2019/05/20 17:01:08 peer 0 : timeout 
+2019/05/20 17:01:08 peer 0 start election
+2019/05/20 17:01:08 [ Election ] 0 got vote from 2, term = 2
+2019/05/20 17:01:08 [Election-->success] 0 LLLock--id 113009180 [waitTime 1558342868]
+2019/05/20 17:01:08 [Election-->success] 0 UULock--id 113009180 [time: 0]
+2019/05/20 17:01:08 peer 0 : win
+2019/05/20 17:01:08 [start command]--Leader 0 log, {191513996 3 2 103}
+2019/05/20 17:01:08 [send msg fail], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:01:08 [ peer 2 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:08 [send msg fail], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:08 [rewrite success]
+2019/05/20 17:01:08 leader 0 update the commit index 3
+2019/05/20 17:01:08 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:08 peer 2 update commitId 1 get commitId 3
+2019/05/20 17:01:08 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:08 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:08 peer 1 : election(377ms) heartbeat(100ms)
+2019/05/20 17:01:08 [start command]--Leader 0 log, {113127254 4 2 104}
+2019/05/20 17:01:08 [ peer 2 AppendEntries log]
+2019/05/20 17:01:08 [send msg {2 0 3 2 [{113127254 4 2 104}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:01:08 leader 0 update the commit index 4
+2019/05/20 17:01:08 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:01:08 [ peer 1 AppendEntries log]
+2019/05/20 17:01:08 [send msg {2 0 2 1 [{113127254 4 2 104} {191513996 3 2 103}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:01:08 peer 1 update commitId 2 get commitId 4
+2019/05/20 17:01:08 peer 2 update commitId 3 get commitId 4
+2019/05/20 17:01:08 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:01:08 peer 1 : timeout 
+2019/05/20 17:01:08 peer 1 start election
+2019/05/20 17:01:08 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:08 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.7  3   47    4
+PASS
+ok  	raft	1.730s
+2019/05/20 17:01:08 peer 0 : election(389ms) heartbeat(100ms)
+2019/05/20 17:01:08 peer 1 : election(467ms) heartbeat(100ms)
+2019/05/20 17:01:08 peer 2 : election(406ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:01:09 peer 0 : timeout 
+2019/05/20 17:01:09 peer 0 start election
+2019/05/20 17:01:09 [ Election ] 0 got vote from 1, term = 1
+2019/05/20 17:01:09 [ Election ] 0 got vote from 2, term = 1
+2019/05/20 17:01:09 [Election-->success] 0 LLLock--id 185195421 [waitTime 1558342869]
+2019/05/20 17:01:09 [Election-->success] 0 UULock--id 185195421 [time: 0]
+2019/05/20 17:01:09 peer 0 : win
+2019/05/20 17:01:09 [start command]--Leader 0 log, {109482723 1 1 101}
+2019/05/20 17:01:09 [ peer 2 AppendEntries log]
+2019/05/20 17:01:09 [ peer 1 AppendEntries log]
+2019/05/20 17:01:09 [send msg {1 0 0 0 [{109482723 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:09 leader 0 update the commit index 1
+2019/05/20 17:01:09 [send msg {1 0 0 0 [{109482723 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:09 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:01:09 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:01:09 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:01:09 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:09 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:01:09 [start command]--Leader 0 log, {199542460 2 1 102}
+2019/05/20 17:01:09 [ peer 1 AppendEntries log]
+2019/05/20 17:01:09 [send msg {1 0 1 1 [{199542460 2 1 102}] 0} success], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:01:09 leader 0 update the commit index 2
+2019/05/20 17:01:09 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:09 peer 1 update commitId 1 get commitId 2
+2019/05/20 17:01:09 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:09 peer 0 : election(349ms) heartbeat(100ms)
+2019/05/20 17:01:10 peer 2 : timeout 
+2019/05/20 17:01:10 peer 2 start election
+2019/05/20 17:01:10 peer 0 : timeout 
+2019/05/20 17:01:10 peer 0 start election
+2019/05/20 17:01:10 [ Election ] 0 got vote from 2, term = 2
+2019/05/20 17:01:10 [Election-->success] 0 LLLock--id 197215793 [waitTime 1558342870]
+2019/05/20 17:01:10 [Election-->success] 0 UULock--id 197215793 [time: 0]
+2019/05/20 17:01:10 peer 0 : win
+2019/05/20 17:01:10 [start command]--Leader 0 log, {149602042 3 2 103}
+2019/05/20 17:01:10 [send msg fail], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:01:10 [ peer 2 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:10 [send msg fail], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:10 [rewrite success]
+2019/05/20 17:01:10 leader 0 update the commit index 3
+2019/05/20 17:01:10 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:10 peer 1 : timeout 
+2019/05/20 17:01:10 peer 1 start election
+2019/05/20 17:01:10 peer 2 update commitId 1 get commitId 3
+2019/05/20 17:01:10 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:10 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:10 peer 1 : election(453ms) heartbeat(100ms)
+2019/05/20 17:01:10 [start command]--Leader 0 log, {122282211 4 2 104}
+2019/05/20 17:01:10 [ peer 2 AppendEntries log]
+2019/05/20 17:01:10 [ peer 1 AppendEntries log]
+2019/05/20 17:01:10 [send msg {2 0 3 2 [{122282211 4 2 104}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:01:10 leader 0 update the commit index 4
+2019/05/20 17:01:10 [send msg {2 0 2 1 [{122282211 4 2 104} {149602042 3 2 103}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:01:10 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:01:10 peer 2 update commitId 3 get commitId 4
+2019/05/20 17:01:10 peer 1 update commitId 2 get commitId 4
+2019/05/20 17:01:10 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:01:10 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:10 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.6  3   47    4
+PASS
+ok  	raft	1.610s
+2019/05/20 17:01:11 peer 0 : election(468ms) heartbeat(100ms)
+2019/05/20 17:01:11 peer 1 : election(467ms) heartbeat(100ms)
+2019/05/20 17:01:11 peer 2 : election(348ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:01:11 peer 2 : timeout 
+2019/05/20 17:01:11 peer 2 start election
+2019/05/20 17:01:11 [ Election ] 2 got vote from 0, term = 1
+2019/05/20 17:01:11 [Election-->success] 2 LLLock--id 111259244 [waitTime 1558342871]
+2019/05/20 17:01:11 [Election-->success] 2 UULock--id 111259244 [time: 0]
+2019/05/20 17:01:11 peer 2 : win
+2019/05/20 17:01:11 [ Election ] 2 got vote from 1, term = 1
+2019/05/20 17:01:11 [start command]--Leader 2 log, {106889895 1 1 101}
+2019/05/20 17:01:11 [ peer 1 AppendEntries log]
+2019/05/20 17:01:11 [ peer 0 AppendEntries log]
+2019/05/20 17:01:11 [send msg {1 2 0 0 [{106889895 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:11 leader 2 update the commit index 1
+2019/05/20 17:01:11 [send msg {1 2 0 0 [{106889895 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:01:11 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:01:11 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:01:11 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:01:11 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:11 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:01:12 [start command]--Leader 2 log, {195761190 2 1 102}
+2019/05/20 17:01:12 [ peer 0 AppendEntries log]
+2019/05/20 17:01:12 [send msg {1 2 1 1 [{195761190 2 1 102}] 0} success], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:01:12 leader 2 update the commit index 2
+2019/05/20 17:01:12 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:12 peer 0 update commitId 1 get commitId 2
+2019/05/20 17:01:12 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:12 peer 2 : election(595ms) heartbeat(100ms)
+2019/05/20 17:01:12 peer 1 : timeout 
+2019/05/20 17:01:12 peer 1 start election
+2019/05/20 17:01:12 peer 0 : timeout 
+2019/05/20 17:01:12 peer 0 start election
+2019/05/20 17:01:12 peer 2 : timeout 
+2019/05/20 17:01:12 peer 2 start election
+2019/05/20 17:01:12 [ Election ] 2 got vote from 1, term = 2
+2019/05/20 17:01:12 [Election-->success] 2 LLLock--id 160085282 [waitTime 1558342872]
+2019/05/20 17:01:12 [Election-->success] 2 UULock--id 160085282 [time: 0]
+2019/05/20 17:01:12 peer 2 : win
+2019/05/20 17:01:12 [start command]--Leader 2 log, {188593614 3 2 103}
+2019/05/20 17:01:12 [send msg fail], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:01:12 [ peer 1 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:12 [send msg fail], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:12 [rewrite success]
+2019/05/20 17:01:12 leader 2 update the commit index 3
+2019/05/20 17:01:12 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:12 peer 1 update commitId 1 get commitId 3
+2019/05/20 17:01:12 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:12 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:12 peer 0 : election(471ms) heartbeat(100ms)
+2019/05/20 17:01:12 [start command]--Leader 2 log, {143176422 4 2 104}
+2019/05/20 17:01:12 [ peer 1 AppendEntries log]
+2019/05/20 17:01:12 [send msg {2 2 3 2 [{143176422 4 2 104}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:01:12 leader 2 update the commit index 4
+2019/05/20 17:01:12 [ peer 0 AppendEntries log]
+2019/05/20 17:01:12 [send msg {2 2 2 1 [{143176422 4 2 104} {188593614 3 2 103}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:01:12 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:01:12 peer 0 update commitId 2 get commitId 4
+2019/05/20 17:01:12 peer 1 update commitId 3 get commitId 4
+2019/05/20 17:01:12 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:01:12 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:12 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+  ... Passed --   1.9  3   55    4
+PASS
+ok  	raft	1.910s
+2019/05/20 17:01:13 peer 0 : election(589ms) heartbeat(100ms)
+2019/05/20 17:01:13 peer 1 : election(357ms) heartbeat(100ms)
+2019/05/20 17:01:13 peer 2 : election(505ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:01:13 peer 1 : timeout 
+2019/05/20 17:01:13 peer 1 start election
+2019/05/20 17:01:13 [ Election ] 1 got vote from 0, term = 1
+2019/05/20 17:01:13 [ Election ] 1 got vote from 2, term = 1
+2019/05/20 17:01:13 [Election-->success] 1 LLLock--id 107510516 [waitTime 1558342873]
+2019/05/20 17:01:13 [Election-->success] 1 UULock--id 107510516 [time: 0]
+2019/05/20 17:01:13 peer 1 : win
+2019/05/20 17:01:13 [start command]--Leader 1 log, {149653907 1 1 101}
+2019/05/20 17:01:13 [ peer 2 AppendEntries log]
+2019/05/20 17:01:13 [ peer 0 AppendEntries log]
+2019/05/20 17:01:13 [send msg {1 1 0 0 [{149653907 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:13 leader 1 update the commit index 1
+2019/05/20 17:01:13 [send msg {1 1 0 0 [{149653907 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:01:13 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:13 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:01:13 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:01:13 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:01:13 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:01:14 [start command]--Leader 1 log, {125962626 2 1 102}
+2019/05/20 17:01:14 [ peer 2 AppendEntries log]
+2019/05/20 17:01:14 [send msg {1 1 1 1 [{125962626 2 1 102}] 0} success], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:01:14 leader 1 update the commit index 2
+2019/05/20 17:01:14 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:14 peer 2 update commitId 1 get commitId 2
+2019/05/20 17:01:14 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:14 peer 1 : election(597ms) heartbeat(100ms)
+2019/05/20 17:01:14 peer 0 : timeout 
+2019/05/20 17:01:14 peer 0 start election
+2019/05/20 17:01:15 peer 2 : timeout 
+2019/05/20 17:01:15 peer 2 start election
+2019/05/20 17:01:15 peer 1 : timeout 
+2019/05/20 17:01:15 peer 1 start election
+2019/05/20 17:01:15 [ Election ] 1 got vote from 0, term = 2
+2019/05/20 17:01:15 [Election-->success] 1 LLLock--id 170928357 [waitTime 1558342875]
+2019/05/20 17:01:15 [Election-->success] 1 UULock--id 170928357 [time: 0]
+2019/05/20 17:01:15 peer 1 : win
+2019/05/20 17:01:15 [start command]--Leader 1 log, {110768694 3 2 103}
+2019/05/20 17:01:15 [send msg fail], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:01:15 [ peer 0 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:15 [send msg fail], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:01:15 [rewrite success]
+2019/05/20 17:01:15 leader 1 update the commit index 3
+2019/05/20 17:01:15 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:15 peer 0 update commitId 1 get commitId 3
+2019/05/20 17:01:15 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:15 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:15 peer 2 : election(595ms) heartbeat(100ms)
+2019/05/20 17:01:15 [start command]--Leader 1 log, {107221884 4 2 104}
+2019/05/20 17:01:15 [ peer 2 AppendEntries log]
+2019/05/20 17:01:15 [ peer 0 AppendEntries log]
+2019/05/20 17:01:15 [send msg {2 1 2 1 [{107221884 4 2 104} {110768694 3 2 103}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:01:15 leader 1 update the commit index 4
+2019/05/20 17:01:15 [send msg {2 1 3 2 [{107221884 4 2 104}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:01:15 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:01:15 peer 2 update commitId 2 get commitId 4
+2019/05/20 17:01:15 peer 0 update commitId 3 get commitId 4
+2019/05/20 17:01:15 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:01:15 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:15 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+  ... Passed --   1.9  3   55    4
+PASS
+ok  	raft	1.907s
+2019/05/20 17:01:15 peer 0 : election(462ms) heartbeat(100ms)
+2019/05/20 17:01:15 peer 1 : election(408ms) heartbeat(100ms)
+2019/05/20 17:01:15 peer 2 : election(343ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:01:16 peer 2 : timeout 
+2019/05/20 17:01:16 peer 2 start election
+2019/05/20 17:01:16 [ Election ] 2 got vote from 1, term = 1
+2019/05/20 17:01:16 [ Election ] 2 got vote from 0, term = 1
+2019/05/20 17:01:16 [Election-->success] 2 LLLock--id 140350034 [waitTime 1558342876]
+2019/05/20 17:01:16 [Election-->success] 2 UULock--id 140350034 [time: 0]
+2019/05/20 17:01:16 peer 2 : win
+2019/05/20 17:01:16 [start command]--Leader 2 log, {153459730 1 1 101}
+2019/05/20 17:01:16 [ peer 0 AppendEntries log]
+2019/05/20 17:01:16 [ peer 1 AppendEntries log]
+2019/05/20 17:01:16 [send msg {1 2 0 0 [{153459730 1 1 101}] 0} success], follower 0 nextIndex 2, matchIndex 1
+2019/05/20 17:01:16 leader 2 update the commit index 1
+2019/05/20 17:01:16 [send msg {1 2 0 0 [{153459730 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:16 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:01:16 peer 0 update commitId 0 get commitId 1
+2019/05/20 17:01:16 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:01:16 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:01:16 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:16 [start command]--Leader 2 log, {145446386 2 1 102}
+2019/05/20 17:01:16 [ peer 0 AppendEntries log]
+2019/05/20 17:01:16 [send msg {1 2 1 1 [{145446386 2 1 102}] 0} success], follower 0 nextIndex 3, matchIndex 2
+2019/05/20 17:01:16 leader 2 update the commit index 2
+2019/05/20 17:01:16 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:16 peer 0 update commitId 1 get commitId 2
+2019/05/20 17:01:16 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:16 peer 2 : election(357ms) heartbeat(100ms)
+2019/05/20 17:01:17 peer 1 : timeout 
+2019/05/20 17:01:17 peer 1 start election
+2019/05/20 17:01:17 peer 2 : timeout 
+2019/05/20 17:01:17 peer 2 start election
+2019/05/20 17:01:17 [ Election ] 2 got vote from 1, term = 2
+2019/05/20 17:01:17 [Election-->success] 2 LLLock--id 130500538 [waitTime 1558342877]
+2019/05/20 17:01:17 [Election-->success] 2 UULock--id 130500538 [time: 0]
+2019/05/20 17:01:17 peer 2 : win
+2019/05/20 17:01:17 [start command]--Leader 2 log, {159529933 3 2 103}
+2019/05/20 17:01:17 [send msg fail], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:01:17 [ peer 1 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:17 [send msg fail], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:17 [rewrite success]
+2019/05/20 17:01:17 leader 2 update the commit index 3
+2019/05/20 17:01:17 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:17 peer 0 : timeout 
+2019/05/20 17:01:17 peer 0 start election
+2019/05/20 17:01:17 peer 1 update commitId 1 get commitId 3
+2019/05/20 17:01:17 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:17 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:17 peer 0 : election(421ms) heartbeat(100ms)
+2019/05/20 17:01:17 [start command]--Leader 2 log, {140106146 4 2 104}
+2019/05/20 17:01:17 [ peer 1 AppendEntries log]
+2019/05/20 17:01:17 [ peer 0 AppendEntries log]
+2019/05/20 17:01:17 [send msg {2 2 3 2 [{140106146 4 2 104}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:01:17 leader 2 update the commit index 4
+2019/05/20 17:01:17 [send msg {2 2 2 1 [{140106146 4 2 104} {159529933 3 2 103}] 0} success], follower 0 nextIndex 5, matchIndex 4
+2019/05/20 17:01:17 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:01:17 peer 0 update commitId 2 get commitId 4
+2019/05/20 17:01:17 peer 1 update commitId 3 get commitId 4
+2019/05/20 17:01:17 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:17 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:01:17 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.7  3   49    4
+PASS
+ok  	raft	1.661s
+2019/05/20 17:01:18 peer 0 : election(328ms) heartbeat(100ms)
+2019/05/20 17:01:18 peer 1 : election(418ms) heartbeat(100ms)
+2019/05/20 17:01:18 peer 2 : election(498ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:01:18 peer 0 : timeout 
+2019/05/20 17:01:18 peer 0 start election
+2019/05/20 17:01:18 [ Election ] 0 got vote from 1, term = 1
+2019/05/20 17:01:18 [ Election ] 0 got vote from 2, term = 1
+2019/05/20 17:01:18 [Election-->success] 0 LLLock--id 153058454 [waitTime 1558342878]
+2019/05/20 17:01:18 [Election-->success] 0 UULock--id 153058454 [time: 0]
+2019/05/20 17:01:18 peer 0 : win
+2019/05/20 17:01:18 [start command]--Leader 0 log, {158081758 1 1 101}
+2019/05/20 17:01:18 [ peer 2 AppendEntries log]
+2019/05/20 17:01:18 [ peer 1 AppendEntries log]
+2019/05/20 17:01:18 [send msg {1 0 0 0 [{158081758 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:18 leader 0 update the commit index 1
+2019/05/20 17:01:18 [send msg {1 0 0 0 [{158081758 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:18 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:01:18 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:01:18 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:01:18 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:18 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:01:18 [start command]--Leader 0 log, {123810326 2 1 102}
+2019/05/20 17:01:18 [ peer 1 AppendEntries log]
+2019/05/20 17:01:18 [send msg {1 0 1 1 [{123810326 2 1 102}] 0} success], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:01:18 leader 0 update the commit index 2
+2019/05/20 17:01:18 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:19 peer 1 update commitId 1 get commitId 2
+2019/05/20 17:01:19 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:19 peer 0 : election(348ms) heartbeat(100ms)
+2019/05/20 17:01:19 peer 0 : timeout 
+2019/05/20 17:01:19 peer 0 start election
+2019/05/20 17:01:19 [ Election ] 0 got vote from 2, term = 2
+2019/05/20 17:01:19 [Election-->success] 0 LLLock--id 106076729 [waitTime 1558342879]
+2019/05/20 17:01:19 [Election-->success] 0 UULock--id 106076729 [time: 0]
+2019/05/20 17:01:19 peer 0 : win
+2019/05/20 17:01:19 [start command]--Leader 0 log, {192438707 3 2 103}
+2019/05/20 17:01:19 [send msg fail], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:01:19 [ peer 2 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:19 [send msg fail], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:19 [rewrite success]
+2019/05/20 17:01:19 leader 0 update the commit index 3
+2019/05/20 17:01:19 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:19 leaderID 0 peer 2 index 2 crash
+2019/05/20 17:01:19 peer 1 : timeout 
+2019/05/20 17:01:19 peer 1 start election
+2019/05/20 17:01:19 peer 2 update commitId 1 get commitId 3
+2019/05/20 17:01:19 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:19 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:19 peer 1 : election(461ms) heartbeat(100ms)
+2019/05/20 17:01:19 [start command]--Leader 0 log, {109644090 4 2 104}
+2019/05/20 17:01:19 [ peer 2 AppendEntries log]
+2019/05/20 17:01:19 [ peer 1 AppendEntries log]
+2019/05/20 17:01:19 [send msg {2 0 3 2 [{109644090 4 2 104}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:01:19 leader 0 update the commit index 4
+2019/05/20 17:01:19 [send msg {2 0 2 1 [{109644090 4 2 104} {192438707 3 2 103}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:01:19 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:01:19 peer 1 update commitId 2 get commitId 4
+2019/05/20 17:01:19 peer 2 update commitId 3 get commitId 4
+2019/05/20 17:01:19 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:19 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:01:19 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+  ... Passed --   1.6  3   48    4
+PASS
+ok  	raft	1.624s
+2019/05/20 17:01:20 peer 0 : election(328ms) heartbeat(100ms)
+2019/05/20 17:01:20 peer 1 : election(343ms) heartbeat(100ms)
+2019/05/20 17:01:20 peer 2 : election(433ms) heartbeat(100ms)
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+2019/05/20 17:01:20 peer 0 : timeout 
+2019/05/20 17:01:20 peer 0 start election
+2019/05/20 17:01:20 [ Election ] 0 got vote from 2, term = 1
+2019/05/20 17:01:20 [ Election ] 0 got vote from 1, term = 1
+2019/05/20 17:01:20 [Election-->success] 0 LLLock--id 177180764 [waitTime 1558342880]
+2019/05/20 17:01:20 [Election-->success] 0 UULock--id 177180764 [time: 0]
+2019/05/20 17:01:20 peer 0 : win
+2019/05/20 17:01:20 [start command]--Leader 0 log, {114814800 1 1 101}
+2019/05/20 17:01:20 [ peer 1 AppendEntries log]
+2019/05/20 17:01:20 [ peer 2 AppendEntries log]
+2019/05/20 17:01:20 [send msg {1 0 0 0 [{114814800 1 1 101}] 0} success], follower 1 nextIndex 2, matchIndex 1
+2019/05/20 17:01:20 leader 0 update the commit index 1
+2019/05/20 17:01:20 [send msg {1 0 0 0 [{114814800 1 1 101}] 0} success], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:20 [ApplyUncommitLog] peer 0 last applied number 1 command 101
+2019/05/20 17:01:20 peer 2 update commitId 0 get commitId 1
+2019/05/20 17:01:20 peer 1 update commitId 0 get commitId 1
+2019/05/20 17:01:20 [ApplyUncommitLog] peer 2 last applied number 1 command 101
+2019/05/20 17:01:20 [ApplyUncommitLog] peer 1 last applied number 1 command 101
+2019/05/20 17:01:20 [start command]--Leader 0 log, {163312361 2 1 102}
+2019/05/20 17:01:20 [ peer 1 AppendEntries log]
+2019/05/20 17:01:20 [send msg {1 0 1 1 [{163312361 2 1 102}] 0} success], follower 1 nextIndex 3, matchIndex 2
+2019/05/20 17:01:20 leader 0 update the commit index 2
+2019/05/20 17:01:20 [ApplyUncommitLog] peer 0 last applied number 2 command 102
+2019/05/20 17:01:21 peer 1 update commitId 1 get commitId 2
+2019/05/20 17:01:21 [ApplyUncommitLog] peer 1 last applied number 2 command 102
+2019/05/20 17:01:21 peer 0 : election(458ms) heartbeat(100ms)
+2019/05/20 17:01:21 peer 2 : timeout 
+2019/05/20 17:01:21 peer 2 start election
+2019/05/20 17:01:21 peer 1 : timeout 
+2019/05/20 17:01:21 peer 1 start election
+2019/05/20 17:01:21 peer 0 : timeout 
+2019/05/20 17:01:21 peer 0 start election
+2019/05/20 17:01:21 [ Election ] 0 got vote from 2, term = 2
+2019/05/20 17:01:21 [Election-->success] 0 LLLock--id 176961018 [waitTime 1558342881]
+2019/05/20 17:01:21 [Election-->success] 0 UULock--id 176961018 [time: 0]
+2019/05/20 17:01:21 peer 0 : win
+2019/05/20 17:01:21 [start command]--Leader 0 log, {111513311 3 2 103}
+2019/05/20 17:01:21 [send msg fail], follower 2 nextIndex 3, matchIndex 2
+2019/05/20 17:01:21 [ peer 2 AppendEntries log]
+labgob warning: Decoding into a non-default variable/field Term may not work
+2019/05/20 17:01:21 [send msg fail], follower 2 nextIndex 2, matchIndex 1
+2019/05/20 17:01:21 [rewrite success]
+2019/05/20 17:01:21 leader 0 update the commit index 3
+2019/05/20 17:01:21 [ApplyUncommitLog] peer 0 last applied number 3 command 103
+2019/05/20 17:01:21 peer 2 update commitId 1 get commitId 3
+2019/05/20 17:01:21 [ApplyUncommitLog] peer 2 last applied number 2 command 102
+2019/05/20 17:01:21 [ApplyUncommitLog] peer 2 last applied number 3 command 103
+2019/05/20 17:01:21 peer 1 : election(376ms) heartbeat(100ms)
+2019/05/20 17:01:21 [start command]--Leader 0 log, {148008090 4 2 104}
+2019/05/20 17:01:21 [ peer 2 AppendEntries log]
+2019/05/20 17:01:21 [send msg {2 0 3 2 [{148008090 4 2 104}] 0} success], follower 2 nextIndex 5, matchIndex 4
+2019/05/20 17:01:21 leader 0 update the commit index 4
+2019/05/20 17:01:21 [ApplyUncommitLog] peer 0 last applied number 4 command 104
+2019/05/20 17:01:21 [ peer 1 AppendEntries log]
+2019/05/20 17:01:21 [send msg {2 0 2 1 [{148008090 4 2 104} {111513311 3 2 103}] 0} success], follower 1 nextIndex 5, matchIndex 4
+2019/05/20 17:01:21 peer 2 update commitId 3 get commitId 4
+2019/05/20 17:01:21 peer 1 update commitId 2 get commitId 4
+2019/05/20 17:01:21 [ApplyUncommitLog] peer 1 last applied number 3 command 103
+2019/05/20 17:01:21 [ApplyUncommitLog] peer 1 last applied number 4 command 104
+2019/05/20 17:01:21 [ApplyUncommitLog] peer 2 last applied number 4 command 104
+2019/05/20 17:01:21 peer 1 : timeout 
+2019/05/20 17:01:21 peer 1 start election
+  ... Passed --   1.6  3   51    4
+PASS
+ok  	raft	1.641s

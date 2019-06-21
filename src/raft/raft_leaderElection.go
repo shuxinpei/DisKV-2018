@@ -1,6 +1,8 @@
 package raft
 
 import (
+	"bytes"
+	"labgob"
 	"sync"
 	"time"
 )
@@ -40,6 +42,23 @@ func (rf *Raft) persist() {
 	// e.Encode(rf.yyy)
 	// data := w.Bytes()
 	// rf.persister.SaveRaftState(data)
+
+	w := new(bytes.Buffer)
+	e := labgob.NewEncoder(w)
+
+	var logs []LogEntry
+	for i := 0; i <= rf.lastApplied; i++ {
+		logs = append(logs, rf.logs[i])
+	}
+	persistData := PersistData{
+		Raftstate{rf.commitIndex, rf.lastApplied, rf.currentTerm},
+		Snapshot{logs},
+	}
+	// rf.commitIndex, rf.lastApplied, rf.currentTerm, logs
+	e.Encode(persistData)
+	data := w.Bytes()
+	rf.persister.SaveRaftState(data)
+	//DPrintf("peer %v save PersistData %+v",rf.me, persistData)
 }
 
 //
@@ -62,14 +81,35 @@ func (rf *Raft) readPersist(data []byte) {
 	//   rf.xxx = xxx
 	//   rf.yyy = yyy
 	// }
+
+	r := bytes.NewBuffer(data)
+	d := labgob.NewDecoder(r)
+	var persistData PersistData
+	if d.Decode(&persistData) != nil {
+		//DPrintf("[ readPersist ] failed err is not nil")
+	} else {
+		//DPrintf("[ readPersist ] peer %v success persistData %+v", rf.me, persistData)
+		rf.commitIndex = persistData.CommitIndex
+		rf.lastApplied = persistData.ApplyIndex
+		rf.currentTerm = persistData.CurrentTerm
+		// recover the logs, if the log still in the object then jump, else append it
+		for i := range persistData.Logs{
+			logIndex := persistData.Logs[i].LogIndex
+			if logIndex < len(rf.logs) && rf.logs[logIndex].LogTerm == persistData.Logs[i].LogTerm &&
+				rf.logs[logIndex].LogIndex == persistData.Logs[i].LogIndex {
+				rf.logs[logIndex] = persistData.Logs[i]
+			}else{
+				rf.logs = append(rf.logs, persistData.Logs[i])
+			}
+		}
+	}
 }
 
 func (rf *Raft) fillVoteRequestArgs(args *RequestVoteArgs) {
 	Lock("fillVoteRequestArgs", rf,true)
 
 	rf.votedFor = rf.me
-	rf.currentTerm++
-
+	rf.currentTerm = rf.currentTerm + 1
 	args.Term			=	rf.currentTerm
 	args.LastLogIndex	=	len(rf.logs) -1
 	args.LastLogTerm	=	rf.logs[args.LastLogIndex].LogTerm
@@ -79,33 +119,39 @@ func (rf *Raft) fillVoteRequestArgs(args *RequestVoteArgs) {
 func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (2A, 2B).
 	Lock("RequestVote", rf, true)
+	//TODO:进行回归测试
 	//如果不加，则会出现一个周期内出现两个leader的情况
 	//如果加了，则会出现大家都选举自己的情况，导致没有leader
-	if args.Term <= rf.currentTerm {
+	//用term有个问题，3个在进行选举，只有一个是符合选举的要求的，但是因为超时时间太长，就会导致它的term一直小于其他两者，这是不行的
+	if args.Term < rf.currentTerm || args.Term == rf.currentTerm && rf.votedFor != rf.me { // 去掉等于进行尝试，vote失败会更新term
+		reply.Term = rf.currentTerm
+		reply.VoteGranted = false
+		DPrintf("[ RequestVote failed ] peer %v term  %v me %v term %v", args.CandidateId, args.Term, rf.me, rf.currentTerm)
+	}else{
+		//只有在满足拥有更适合的选举者的时候才会进行重置时间
+		//日志约束条件, log term > rf.lastlog.term || term 相等，但是log index 大于 rf.last log term
+		lastLogIndex := len(rf.logs) - 1
+		lastLogTerm := rf.logs[lastLogIndex].LogTerm
+		DPrintf("[ RequestVote success ] peer %v term  %v me %v term %v \r\n" +
+			"lastLogTerm %v lastlogIndex %v arg: log term %v  log index %v",
+			args.CandidateId, args.Term, rf.me, rf.currentTerm,
+			lastLogIndex, lastLogTerm, args.LastLogTerm, args.LastLogIndex)
+		if args.LastLogTerm > lastLogTerm ||
+			args.LastLogTerm == lastLogTerm && args.LastLogIndex >= lastLogIndex {
+
+			rf.votedFor = args.CandidateId
+			rf.currentTerm = args.Term
+			rf.isLeader = false
+			reply.Term = rf.currentTerm
+			reply.VoteGranted = true
+
+			rf.resetTimer <- struct{}{}
+			return
+		}
 		reply.Term = rf.currentTerm
 		reply.VoteGranted = false
 		return
 	}
-	//只有在满足拥有更适合的选举者的时候才会进行重置时间
-	//日志约束条件, log term > rf.lastlog.term || term 相等，但是log index 大于 rf.last log term
-	lastLogIndex := len(rf.logs) - 1
-	lastLogTerm := rf.logs[lastLogIndex].LogTerm
-	if args.LastLogTerm > lastLogTerm ||
-		args.LastLogTerm == lastLogTerm && args.LastLogIndex >= lastLogIndex {
-
-		rf.votedFor = args.CandidateId
-		rf.currentTerm = args.Term
-		rf.isLeader = false
-		reply.Term = rf.currentTerm
-		reply.VoteGranted = true
-
-		rf.resetTimer <- struct{}{}
-		DPrintf("[ Election ] %v got vote from %v, term = %v",args.CandidateId, rf.me, args.Term)
-		return
-	}
-	reply.Term = rf.currentTerm
-	reply.VoteGranted = false
-	return
 }
 
 //
@@ -171,7 +217,7 @@ func (rf *Raft) Election() {
 	var supportCount int
 	for reply := range replys{
 		if reply.VoteGranted{
-
+			DPrintf("[----Election]peer %v got vote and term %v ", rf.me, rf.currentTerm)
 			if supportCount++; supportCount > len(rf.peers)/2 - 1 {
 				Lock("Election-->success", rf,false)
 				DPrintf("peer %d : win", rf.me)
@@ -182,7 +228,10 @@ func (rf *Raft) Election() {
 					rf.nextIndex[idx] = len(rf.logs)
 					rf.matchIndex[idx] = len(rf.logs) - 1
 				}
-
+				//尝试发送没有commit的log给follower
+				for i := rf.commitIndex + 1; i < len(rf.logs); i++ {
+					rf.LogReplication(i)
+				}
 				go rf.HeartBeatDaemon()
 				return
 			}
@@ -192,6 +241,7 @@ func (rf *Raft) Election() {
 		if reply.Term > rf.currentTerm{
 			Lock("Election-->i am old term", rf,false)
 			rf.votedFor = -1
+			rf.currentTerm = reply.Term
 			rf.isLeader = false
 			return
 		}
@@ -204,9 +254,15 @@ func (rf *Raft) ElectionDaemon() {
 		case <-rf.resetTimer:
 			rf.electionTimer.Reset(rf.electionTimeOut)
 		case <-rf.electionTimer.C:
-			DPrintf("peer %d : timeout", rf.me)
+			DPrintf("peer %d : timeout ", rf.me)
 			rf.electionTimer.Reset(rf.electionTimeOut)
-			go rf.Election()
+			// 不是leader 才会进行选举
+			rf.mu.mu.Lock()
+			_, isLeader := rf.GetState()
+			rf.mu.mu.Unlock()
+			if !isLeader {
+				go rf.Election()
+			}
 		}
 	}
 }
@@ -217,7 +273,8 @@ func (rf *Raft) HeartBeat(arg *AppendEntriesArgs, peer int){
 		if !reply.Success {
 			DPrintf("heartBeat failed , leader %v peer %v", arg.LeaderId, peer)
 			Lock("HeartBeat Reply faild", rf,false)
-			 rf.currentTerm  	= reply.Term
+			 // 更新term使用心跳来
+			 // rf.currentTerm  	= reply.Term
 			 rf.votedFor	  	= -1
 			 rf.isLeader		= false
 		}
@@ -227,9 +284,9 @@ func (rf *Raft) HeartBeat(arg *AppendEntriesArgs, peer int){
 func (rf *Raft) HeartBeatDaemon() {
 	for {
 		if _, isLeader := rf.GetState(); isLeader {
-			var appendEntry AppendEntriesArgs
-			rf.fillAppendEntriesArg(&appendEntry, -1,-1, true)
 			for peer := range rf.peers {
+				var appendEntry AppendEntriesArgs
+				rf.fillAppendEntriesArg(&appendEntry, peer,-1, true)
 				if peer == rf.me{
 					rf.resetTimer <- struct{}{}
 				}else{

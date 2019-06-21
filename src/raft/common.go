@@ -44,6 +44,7 @@ type AppendEntriesArgs struct {
 type AppendEntriesReply struct{
 	Term 			int
 	Success 		bool
+	ShutDown 		bool
 }
 
 type LogReplicationReply struct {
@@ -81,6 +82,19 @@ type appendCond struct {
 	//先按照自己思路写一下
 	//exit bool
 }
+func (ac *appendCond) Send(rf *Raft) {
+	ac.mu.Lock("SendLog -> start", rf, true)
+	ac.sending = true
+	ac.sendTimer.Reset(time.Duration(sendTimeOut) * time.Millisecond)
+	ac.mu.Unlock("SendLog -> start", rf, true)
+}
+
+func (ac *appendCond) Finish(rf *Raft) {
+	ac.mu.Lock("SendLog -> finish -> cond",rf,true)
+	ac.sending = false
+	ac.cond.Signal()
+	ac.mu.Unlock("SendLog -> finish -> cond", rf,true)
+}
 
 func (ac *appendCond) TimeOutFree() {
 	go func() {
@@ -88,10 +102,10 @@ func (ac *appendCond) TimeOutFree() {
 			select {
 			case <-ac.sendTimer.C:
 				if ac.sending{
-					ac.mu.Lock("TimeOutFree", nil, false)
+					ac.mu.Lock("TimeOutFree", nil, true)
 					ac.sending = false
 					ac.cond.Signal()
-					ac.mu.Unlock("TimeOutFree", nil, false)
+					ac.mu.Unlock("TimeOutFree", nil, true)
 				}
 			}
 		}

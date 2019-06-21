@@ -11,12 +11,10 @@ import "sync"
 // test with the original before submitting.
 //
 
-
-
 type Persister struct {
 	mu        sync.Mutex
-	raftstate []byte
-	snapshot  []byte
+	raftstate []byte			// save lastTerm lastIndex
+	snapshot  []byte			// save the logs
 }
 
 func MakePersister() *Persister {
@@ -69,4 +67,19 @@ func (ps *Persister) SnapshotSize() int {
 	ps.mu.Lock()
 	defer ps.mu.Unlock()
 	return len(ps.snapshot)
+}
+
+type Raftstate struct {
+	CommitIndex int
+	ApplyIndex  int
+	CurrentTerm int
+}
+
+type Snapshot struct {
+	Logs		[]LogEntry
+}
+
+type PersistData struct{
+	Raftstate
+	Snapshot
 }
